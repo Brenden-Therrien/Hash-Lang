@@ -1,0 +1,41 @@
+# Hash Language I/O Demo
+# Demonstrates all built-in console output functions
+
+fn main() -> i32:
+    # Print integers
+    print_i32(42)
+    print_i32(-17)
+    print_i32(0)
+
+    # Print floating point numbers
+    print_f64(3.14159)
+    print_f64(-2.71828)
+    print_f64(0.0)
+
+    # Print booleans
+    print_bool(true)
+    print_bool(false)
+
+    # Blank lines for spacing
+    println()
+
+    # Combined example: Simple calculation results
+    let x: i32 = 10
+    let y: i32 = 5
+
+    let sum: i32 = x + y
+    let product: i32 = x * y
+
+    print_i32(sum)      # 15
+    print_i32(product)  # 50
+
+    println()
+
+    # Boolean logic results
+    let is_greater: bool = x > y
+    let is_equal: bool = x == y
+
+    print_bool(is_greater)  # true
+    print_bool(is_equal)    # false
+
+    return 0

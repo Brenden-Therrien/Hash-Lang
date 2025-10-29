@@ -1,0 +1,33 @@
+# Type System Example
+# Demonstrates Hash's type system with different numeric types
+
+pure fn add_integers(a: i32, b: i32) -> i32:
+    return a + b
+
+pure fn add_floats(a: f64, b: f64) -> f64:
+    return a + b
+
+pure fn compare_numbers(a: i64, b: i64) -> bool:
+    return a > b
+
+fn bitwise_operations(a: u32, b: u32) -> u32:
+    let mut result: u32 = a & b      # AND
+    result = result | b              # OR
+    result = result ^ b              # XOR
+    result = result << 2             # Shift left
+    return result
+
+fn main() -> i32:
+    # Integer arithmetic
+    let sum: i32 = add_integers(5, 10)
+    
+    # Float arithmetic
+    let float_sum: f64 = add_floats(3.14, 2.86)
+    
+    # Boolean logic
+    let is_greater: bool = compare_numbers(100, 50)
+    
+    # Bitwise operations
+    let bits: u32 = bitwise_operations(15, 7)
+    
+    return 0

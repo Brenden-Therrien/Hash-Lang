@@ -1,0 +1,5 @@
+# Hello World in Hash
+
+fn main() -> i32:
+    print_str("Hello, World!")
+    return 0

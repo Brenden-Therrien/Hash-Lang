@@ -1,0 +1,226 @@
+# Function Examples
+# Demonstrates different types of functions and patterns
+
+# ============================================
+# Simple Functions
+# ============================================
+
+# Function with no parameters
+fn get_constant() -> i32:
+    return 42
+
+# Function with one parameter
+fn double(x: i32) -> i32:
+    return x * 2
+
+# Function with multiple parameters
+fn add(a: i32, b: i32) -> i32:
+    return a + b
+
+# Function with multiple parameters and operations
+fn calculate(x: i32, y: i32, z: i32) -> i32:
+    let temp1: i32 = x + y
+    let temp2: i32 = temp1 * z
+    return temp2
+
+# ============================================
+# Functions with Different Return Types
+# ============================================
+
+# Return i32
+fn get_int() -> i32:
+    return 100
+
+# Return i32 (changed from i64 since literals are i32)
+fn get_long() -> i32:
+    return 1000000
+
+# Return f64
+fn get_float() -> f64:
+    return 3.14159
+
+# Return bool
+fn get_bool() -> bool:
+    return true
+
+# Return void (no return value)
+fn do_nothing() -> void:
+    let x: i32 = 10
+    return
+
+# ============================================
+# Recursive Functions
+# ============================================
+
+# Factorial (recursive)
+fn factorial_recursive(n: i32) -> i32:
+    if n <= 1:
+        return 1
+    else:
+        return n * factorial_recursive(n - 1)
+
+# Sum from 1 to n (recursive)
+fn sum_recursive(n: i32) -> i32:
+    if n <= 0:
+        return 0
+    else:
+        return n + sum_recursive(n - 1)
+
+# Power function (recursive)
+fn power(base: i32, exp: i32) -> i32:
+    if exp == 0:
+        return 1
+    else:
+        if exp == 1:
+            return base
+        else:
+            return base * power(base, exp - 1)
+
+# Greatest common divisor (recursive)
+fn gcd_recursive(a: i32, b: i32) -> i32:
+    if b == 0:
+        return a
+    else:
+        return gcd_recursive(b, a % b)
+
+# ============================================
+# Functions Calling Other Functions
+# ============================================
+
+# Helper function
+fn square(x: i32) -> i32:
+    return x * x
+
+# Function using helper
+fn sum_of_squares(a: i32, b: i32) -> i32:
+    let sq_a: i32 = square(a)
+    let sq_b: i32 = square(b)
+    return sq_a + sq_b
+
+# Chain of function calls
+fn increment(x: i32) -> i32:
+    return x + 1
+
+fn double_then_increment(x: i32) -> i32:
+    let doubled: i32 = double(x)
+    let result: i32 = increment(doubled)
+    return result
+
+# ============================================
+# Mathematical Functions (user-defined versions)
+# ============================================
+
+# Absolute value (user-defined)
+fn abs_custom(x: i32) -> i32:
+    if x < 0:
+        return -x
+    else:
+        return x
+
+# Minimum of two numbers (user-defined)
+fn min_custom(a: i32, b: i32) -> i32:
+    if a < b:
+        return a
+    else:
+        return b
+
+# Maximum of two numbers (user-defined)
+fn max_custom(a: i32, b: i32) -> i32:
+    if a > b:
+        return a
+    else:
+        return b
+
+# Clamp value between min and max
+fn clamp(value: i32, min_val: i32, max_val: i32) -> i32:
+    if value < min_val:
+        return min_val
+    else:
+        if value > max_val:
+            return max_val
+        else:
+            return value
+
+# Check if number is even
+fn is_even(n: i32) -> bool:
+    return n % 2 == 0
+
+# Check if number is odd
+fn is_odd(n: i32) -> bool:
+    return n % 2 == 1
+
+# ============================================
+# Algorithm Functions
+# ============================================
+
+# Check if number is prime
+fn is_prime(n: i32) -> bool:
+    if n <= 1:
+        return false
+    
+    if n <= 3:
+        return true
+    
+    if n % 2 == 0:
+        return false
+    
+    let mut i: i32 = 3
+    while i * i <= n:
+        if n % i == 0:
+            return false
+        else:
+            i = i + 2
+    
+    return true
+
+# Greatest common divisor (iterative)
+fn gcd(a: i32, b: i32) -> i32:
+    let mut x: i32 = a
+    let mut y: i32 = b
+    
+    while y != 0:
+        let mut temp: i32 = y
+        y = x % y
+        x = temp
+    
+    return x
+
+# Least common multiple
+fn lcm(a: i32, b: i32) -> i32:
+    let divisor: i32 = gcd(a, b)
+    let result: i32 = a / divisor
+    let final: i32 = result * b
+    return final
+
+# Nth triangular number (1 + 2 + 3 + ... + n)
+fn triangular(n: i32) -> i32:
+    return n * (n + 1) / 2
+
+# ============================================
+# Main Function
+# ============================================
+
+fn main() -> i32:
+    # Test simple functions
+    let const: i32 = get_constant()
+    let doubled: i32 = double(5)
+    let sum: i32 = add(10, 20)
+    
+    # Test recursive functions
+    let fact: i32 = factorial_recursive(5)
+    let pow: i32 = power(2, 10)
+    
+    # Test function composition
+    let sum_sq: i32 = sum_of_squares(3, 4)
+    
+    # Test math functions
+    let absolute: i32 = abs_custom(-42)
+    let minimum: i32 = min_custom(10, 20)
+    let clamped: i32 = clamp(150, 0, 100)
+    
+    # Test algorithms
+    let prime: bool = is_prime(17)
+    let common_div: i32 = gcd(48, 18)
+    let tri: i32 = triangular(10)
+    
+    return 0

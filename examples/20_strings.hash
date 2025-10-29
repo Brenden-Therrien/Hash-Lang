@@ -1,0 +1,138 @@
+# Hash Language - String Manipulation Demo
+# Python-inspired string functions
+
+fn main() -> i32:
+    # === String Length - Python-style len() ===
+    let greeting: str = "Hello"
+    let name: str = "World"
+    
+    print_str("String: ")
+    print_str(greeting)
+    println()
+    print_str("Length: ")
+    print_i32(len(greeting))  # 5
+    println()
+    println()
+    
+    # === String Concatenation ===
+    let combined: str = str_concat(greeting, " ")
+    let message: str = str_concat(combined, name)
+    
+    print_str("Combined: ")
+    print_str(message)  # "Hello World"
+    println()
+    print_str("Length: ")
+    print_i32(len(message))  # 11
+    println()
+    println()
+    
+    # === String Equality ===
+    let word1: str = "Hash"
+    let word2: str = "Hash"
+    let word3: str = "Python"
+    
+    print_str("'Hash' == 'Hash': ")
+    print_bool(str_eq(word1, word2))  # true
+    println()
+    
+    print_str("'Hash' == 'Python': ")
+    print_bool(str_eq(word1, word3))  # false
+    println()
+    println()
+    
+    # === Case Conversion ===
+    let text: str = "Hello World"
+    
+    print_str("Original: ")
+    print_str(text)
+    println()
+    
+    let uppercase: str = upper(text)
+    print_str("Uppercase: ")
+    print_str(uppercase)  # "HELLO WORLD"
+    println()
+    
+    let lowercase: str = lower(text)
+    print_str("Lowercase: ")
+    print_str(lowercase)  # "hello world"
+    println()
+    println()
+    
+    # === Real-World Example: Name Formatter ===
+    let first: str = "john"
+    let last: str = "doe"
+    
+    # Capitalize first and last names
+    let first_cap: str = upper(first)
+    let last_cap: str = upper(last)
+    
+    # Build full name
+    let space: str = " "
+    let temp: str = str_concat(first_cap, space)
+    let full_name: str = str_concat(temp, last_cap)
+    
+    print_str("Formatted name: ")
+    print_str(full_name)  # "JOHN DOE"
+    println()
+    println()
+    
+    # === Real-World Example: Password Checker ===
+    let password: str = "MyPassword123"
+    let min_length: i32 = 8
+    let pw_len: i32 = len(password)
+    
+    print_str("Password: ")
+    print_str(password)
+    println()
+    print_str("Length: ")
+    print_i32(pw_len)
+    println()
+    print_str("Min required: ")
+    print_i32(min_length)
+    println()
+    
+    if pw_len >= min_length:
+        print_str("Password length OK!")
+    else:
+        print_str("Password too short!")
+    println()
+    println()
+    
+    # === Real-World Example: String Comparison ===
+    let command: str = "START"
+    let start_cmd: str = "START"
+    let stop_cmd: str = "STOP"
+    
+    print_str("Command: ")
+    print_str(command)
+    println()
+    
+    if str_eq(command, start_cmd):
+        print_str("Starting system...")
+    else:
+        if str_eq(command, stop_cmd):
+            print_str("Stopping system...")
+        else:
+            print_str("Unknown command!")
+    println()
+    println()
+    
+    # === Real-World Example: Text Processing ===
+    let tag: str = "<TITLE>"
+    let tag_lower: str = lower(tag)
+    
+    print_str("HTML tag: ")
+    print_str(tag)
+    println()
+    print_str("Normalized: ")
+    print_str(tag_lower)
+    println()
+    
+    let expected: str = "<title>"
+    if str_eq(tag_lower, expected):
+        print_str("Tag matches expected format!")
+    else:
+        print_str("Tag format mismatch!")
+    println()
+    
+    return 0

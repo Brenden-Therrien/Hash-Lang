@@ -1,0 +1,185 @@
+# Control Flow Examples
+# Demonstrates if/else statements and while loops
+
+# ============================================
+# If/Else Statements
+# ============================================
+
+# Simple if statement
+fn check_positive(n: i32) -> i32:
+    if n > 0:
+        return 1
+    else:
+        return 0
+
+# Nested if/else
+fn classify_number(n: i32) -> i32:
+    if n > 0:
+        return 1   # Positive
+    else:
+        if n < 0:
+            return -1  # Negative
+        else:
+            return 0   # Zero
+
+# Multiple conditions
+fn grade_to_number(score: i32) -> i32:
+    if score >= 90:
+        return 4  # A
+    else:
+        if score >= 80:
+            return 3  # B
+        else:
+            if score >= 70:
+                return 2  # C
+            else:
+                if score >= 60:
+                    return 1  # D
+                else:
+                    return 0  # F
+
+# Boolean conditions
+fn can_vote(age: i32, is_citizen: bool) -> bool:
+    if age >= 18:
+        if is_citizen:
+            return true
+        else:
+            return false
+    else:
+        return false
+
+# ============================================
+# While Loops
+# ============================================
+
+# Simple while loop
+fn count_to_ten() -> i32:
+    let mut i: i32 = 0
+    while i < 10:
+        i = i + 1
+    return i
+
+# Sum numbers from 1 to n
+fn sum_to_n(n: i32) -> i32:
+    let mut sum: i32 = 0
+    let mut i: i32 = 1
+    
+    while i <= n:
+        sum = sum + i
+        i = i + 1
+    
+    return sum
+
+# Factorial using while loop
+fn factorial(n: i32) -> i32:
+    if n <= 1:
+        return 1
+    
+    let mut result: i32 = 1
+    let mut i: i32 = 2
+    
+    while i <= n:
+        result = result * i
+        i = i + 1
+    
+    return result
+
+# Count down
+fn countdown(start: i32) -> i32:
+    let mut count: i32 = start
+    
+    while count > 0:
+        count = count - 1
+    
+    return count
+
+# Find first power of 2 greater than n
+fn next_power_of_two(n: i32) -> i32:
+    let mut power: i32 = 1
+    
+    while power <= n:
+        power = power * 2
+    
+    return power
+
+# ============================================
+# Combining Control Flow
+# ============================================
+
+# Find maximum of three numbers
+fn max_of_three(a: i32, b: i32, c: i32) -> i32:
+    let mut max: i32 = a
+    
+    if b > max:
+        max = b
+    else:
+        if c > max:
+            max = c
+        else:
+            max = max
+    
+    if c > max:
+        max = c
+    else:
+        max = max
+    
+    return max
+
+# Check if number is in range
+fn in_range(value: i32, min: i32, max: i32) -> bool:
+    if value >= min:
+        if value <= max:
+            return true
+        else:
+            return false
+    else:
+        return false
+
+# Count even numbers from 1 to n
+fn count_evens(n: i32) -> i32:
+    let mut count: i32 = 0
+    let mut i: i32 = 1
+    
+    while i <= n:
+        if i % 2 == 0:
+            count = count + 1
+        else:
+            count = count
+        i = i + 1
+    
+    return count
+
+# Sum odd numbers from 1 to n
+fn sum_odds(n: i32) -> i32:
+    let mut sum: i32 = 0
+    let mut i: i32 = 1
+    
+    while i <= n:
+        if i % 2 == 1:
+            sum = sum + i
+        else:
+            sum = sum
+        i = i + 1
+    
+    return sum
+
+# ============================================
+# Main Function
+# ============================================
+
+fn main() -> i32:
+    # Test if/else
+    let pos: i32 = check_positive(5)
+    let classification: i32 = classify_number(-10)
+    let grade: i32 = grade_to_number(85)
+    
+    # Test while loops
+    let ten: i32 = count_to_ten()
+    let sum: i32 = sum_to_n(100)
+    let fact: i32 = factorial(5)
+    
+    # Test combinations
+    let maximum: i32 = max_of_three(10, 25, 15)
+    let evens: i32 = count_evens(20)
+    
+    return 0

@@ -1,0 +1,50 @@
+# Comprehensive Error Examples
+# This file demonstrates common mistakes and helpful error messages
+
+fn main() -> i32:
+    # ❌ ERROR 1: Using integer instead of float for pow
+    # let result1: f64 = pow(2, 8)
+    # Error: expected f64, got i32
+    # Fix: Use pow(2.0, 8.0)
+    
+    # ✅ CORRECT:
+    let result1: f64 = pow(2.0, 8.0)
+    
+    # ❌ ERROR 2: Wrong number of arguments
+    # let result2: f64 = pow(2.0)
+    # Error: Function 'pow' expects 2 arguments, got 1
+    
+    # ✅ CORRECT:
+    let result2: f64 = pow(2.0, 3.0)
+    
+    # ❌ ERROR 3: Assigning float result to int variable
+    # let result3: i32 = sqrt(16.0)
+    # Error: Type mismatch: expected i32, got f64
+    # Fix: Use f64 or convert with int()
+    
+    # ✅ CORRECT:
+    let result3: f64 = sqrt(16.0)
+    let result3_int: i32 = int(sqrt(16.0))
+    
+    # ❌ ERROR 4: Using int for floor/ceil/round
+    # let result4: f64 = floor(3)
+    # Error: expected f64, got i32
+    # Fix: Use 3.0 or float(3)
+    
+    # ✅ CORRECT:
+    let result4: f64 = floor(3.0)
+    let result4_alt: f64 = floor(float(3))
+    
+    # ❌ ERROR 5: Mixing up int() vs float()
+    # let x: f64 = int(42)
+    # Error: cannot assign i32 to f64
+    
+    # ✅ CORRECT:
+    let x: f64 = float(42)
+    let y: i32 = int(3.14)
+    
+    println()
+    print_str("All corrections applied successfully!")
+    println()
+    
+    return 0

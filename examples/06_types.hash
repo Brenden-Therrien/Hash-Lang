@@ -1,0 +1,191 @@
+# Type System Deep Dive
+# Comprehensive examples of Hash's type system
+# Note: Integer literals default to i32, float literals to f64
+
+# ============================================
+# Integer Types - i32 (Most Common)
+# ============================================
+
+fn demo_i32() -> i32:
+    let normal: i32 = 2147483647
+    let negative: i32 = -1000
+    let arithmetic: i32 = 100 + 200 - 50
+    return arithmetic
+
+# Working with i32 values
+fn i32_operations() -> i32:
+    let a: i32 = 100
+    let b: i32 = 200
+    let sum: i32 = a + b
+    let product: i32 = a * b
+    let quotient: i32 = a / 10
+    return sum
+
+# ============================================
+# Floating Point Types
+# ============================================
+
+# f64: 64-bit floating point (default for float literals)
+fn demo_f64() -> f64:
+    let precise_pi: f64 = 3.141592653589793
+    let e: f64 = 2.71828
+    let small: f64 = 0.000001
+    return precise_pi
+
+# Floating point arithmetic
+fn float_arithmetic() -> f64:
+    let a: f64 = 10.5
+    let b: f64 = 2.5
+    
+    let sum: f64 = a + b          # 13.0
+    let diff: f64 = a - b         # 8.0
+    let product: f64 = a * b      # 26.25
+    let quotient: f64 = a / b     # 4.2
+    
+    return product
+
+# ============================================
+# Boolean Type
+# ============================================
+
+fn demo_bool() -> bool:
+    let truth: bool = true
+    let falsehood: bool = false
+    
+    # Logical operations
+    let and_op: bool = truth && falsehood     # false
+    let or_op: bool = truth || falsehood      # true
+    let not_op: bool = !truth                 # false
+    
+    # Comparisons produce booleans
+    let greater: bool = 10 > 5                # true
+    let equal: bool = 42 == 42                # true
+    
+    return truth
+
+# ============================================
+# Type Conversions and Compatibility
+# ============================================
+
+# Same-size integer operations
+fn same_size_ints() -> i32:
+    let a: i32 = 100
+    let b: i32 = 200
+    let sum: i32 = a + b
+    return sum
+
+# Boolean in conditionals
+fn bool_logic(condition: bool) -> i32:
+    if condition:
+        return 1
+    else:
+        return 0
+
+# ============================================
+# Type Constraints in Practice
+# ============================================
+
+# Integer limits
+fn integer_limits() -> i32:
+    let large: i32 = 2147483647
+    return large
+
+# Float precision
+fn precision_matters() -> f64:
+    let precise: f64 = 3.141592653589793
+    return precise
+
+# ============================================
+# Practical Type Usage
+# ============================================
+
+# Use i32 for general counting
+fn count_items(n: i32) -> i32:
+    let mut count: i32 = 0
+    let mut i: i32 = 0
+    
+    while i < n:
+        count = count + 1
+        i = i + 1
+    
+    return count
+
+# Use i32 for bit manipulation
+fn bit_operations(flags: i32) -> i32:
+    let set_bit: i32 = flags | 1
+    let clear_bit: i32 = flags & 254
+    let toggle_bit: i32 = flags ^ 1
+    return set_bit
+
+# Use f64 for scientific calculations
+fn scientific_calc(value: f64, coefficient: f64) -> f64:
+    let result: f64 = value * coefficient
+    return result
+
+# Use bool for flags and conditions
+fn check_conditions(x: i32, y: i32) -> bool:
+    let is_positive: bool = x > 0
+    let is_greater: bool = x > y
+    let both: bool = is_positive && is_greater
+    return both
+
+# ============================================
+# Return Type Examples
+# ============================================
+
+# Returning void (no value)
+fn log_action() -> void:
+    let temp: i32 = 42
+    # In real implementation, might print or log
+    return
+
+# Returning complex calculations
+fn complex_calc(a: i32, b: i32, c: i32) -> i32:
+    let step1: i32 = a * b
+    let step2: i32 = step1 + c
+    let step3: i32 = step2 / 2
+    return step3
+
+# ============================================
+# Type-Specific Algorithms
+# ============================================
+
+# Integer division (truncates)
+fn integer_division(dividend: i32, divisor: i32) -> i32:
+    if divisor == 0:
+        return 0
+    else:
+        return dividend / divisor
+
+# Modulo operation (integers only)
+fn modulo_operation(value: i32, modulus: i32) -> i32:
+    if modulus == 0:
+        return 0
+    else:
+        return value % modulus
+
+# Float division (precise)
+fn float_division(dividend: f64, divisor: f64) -> f64:
+    return dividend / divisor
+
+# ============================================
+# Main Function
+# ============================================
+
+fn main() -> i32:
+    # Test integer operations
+    let i32_val: i32 = demo_i32()
+    let ops: i32 = i32_operations()
+    
+    # Test floating point
+    let f64_val: f64 = demo_f64()
+    let float_calc: f64 = float_arithmetic()
+    
+    # Test boolean
+    let bool_val: bool = demo_bool()
+    
+    # Test practical usage
+    let count: i32 = count_items(100)
+    let bits: i32 = bit_operations(15)
+    
+    return 0

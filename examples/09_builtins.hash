@@ -1,0 +1,75 @@
+# Hash Language - Complete Built-ins Demo
+# Demonstrates I/O, type conversions, and math functions
+
+fn main() -> i32:
+    println()
+    
+    # === CONSOLE I/O DEMO ===
+    print_i32(42)
+    print_f64(3.14159)
+    print_bool(true)
+    println()
+    
+    # === TYPE CONVERSION DEMO ===
+    let int_val: i32 = 100
+    let as_float: f64 = i32_to_f64(int_val)
+    print_f64(as_float)  # 100.000000
+    
+    let pi: f64 = 3.14159
+    let truncated: i32 = f64_to_i32(pi)
+    print_i32(truncated)  # 3
+    println()
+    
+    # === MATH FUNCTIONS DEMO ===
+    let negative: i32 = -25
+    let absolute: i32 = abs_i32(negative)
+    print_i32(absolute)  # 25
+    
+    let smaller: i32 = min_i32(10, 20)
+    let larger: i32 = max_i32(10, 20)
+    print_i32(smaller)   # 10
+    print_i32(larger)    # 20
+    println()
+    
+    # === PRACTICAL EXAMPLE: Circle Area ===
+    # Area = π * r²
+    let radius: i32 = 5
+    let radius_sq: i32 = radius * radius  # 25
+    let radius_f64: f64 = i32_to_f64(radius_sq)
+    let pi_approx: f64 = 3.14159
+    let area: f64 = pi_approx * radius_f64
+    print_f64(area)  # ~78.53975
+    println()
+    
+    # === PRACTICAL EXAMPLE: Pythagorean Theorem ===
+    # c = sqrt(a² + b²)
+    let a: i32 = 3
+    let b: i32 = 4
+    let a_sq: i32 = a * a
+    let b_sq: i32 = b * b
+    let sum: i32 = a_sq + b_sq
+    let sum_f64: f64 = i32_to_f64(sum)
+    let hypotenuse: f64 = sqrt_f64(sum_f64)
+    print_f64(hypotenuse)  # 5.000000
+    println()
+    
+    # === PRACTICAL EXAMPLE: Temperature Bounds ===
+    let temp1: i32 = 72
+    let temp2: i32 = 95
+    let temp3: i32 = 58
+    
+    let min_temp: i32 = min_i32(temp1, min_i32(temp2, temp3))
+    let max_temp: i32 = max_i32(temp1, max_i32(temp2, temp3))
+    
+    print_i32(min_temp)  # 58
+    print_i32(max_temp)  # 95
+    println()
+    
+    # === PRACTICAL EXAMPLE: Absolute Difference ===
+    let val1: i32 = 100
+    let val2: i32 = 75
+    let diff: i32 = val1 - val2
+    let abs_diff: i32 = abs_i32(diff)
+    print_i32(abs_diff)  # 25
+    
+    return 0

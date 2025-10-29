@@ -1,0 +1,211 @@
+# Hash Language - Text Processor
+# Real-world string manipulation patterns
+
+fn main() -> i32:
+    # === User Input Validation ===
+    print_str("=== USER INPUT VALIDATOR ===")
+    println()
+    
+    print_str("Enter username: ")
+    let username: str = "admin"  # Simulated input
+    print_str(username)
+    println()
+    
+    let min_user_len: i32 = 3
+    let max_user_len: i32 = 20
+    let username_len: i32 = len(username)
+    
+    print_str("Length: ")
+    print_i32(username_len)
+    println()
+    
+    if username_len < min_user_len:
+        print_str("ERROR: Username too short (min 3 chars)")
+        println()
+    else:
+        if username_len > max_user_len:
+            print_str("ERROR: Username too long (max 20 chars)")
+            println()
+        else:
+            print_str("Username length valid!")
+            println()
+    
+    println()
+    
+    # === Command Parser ===
+    print_str("=== COMMAND PARSER ===")
+    println()
+    
+    let cmd1: str = "HELP"
+    let cmd2: str = "EXIT"
+    let cmd3: str = "STATUS"
+    
+    let input_cmd: str = "status"
+    let input_upper: str = upper(input_cmd)
+    
+    print_str("Command received: ")
+    print_str(input_cmd)
+    println()
+    print_str("Normalized: ")
+    print_str(input_upper)
+    println()
+    
+    if str_eq(input_upper, cmd1):
+        print_str("Showing help...")
+    else:
+        if str_eq(input_upper, cmd2):
+            print_str("Exiting...")
+        else:
+            if str_eq(input_upper, cmd3):
+                print_str("Status: All systems operational")
+            else:
+                print_str("Unknown command!")
+    
+    println()
+    println()
+    
+    # === Email Validator (basic) ===
+    print_str("=== EMAIL VALIDATOR ===")
+    println()
+    
+    let email: str = "user@example.com"
+    let email_len: i32 = len(email)
+    let min_email: i32 = 5  # a@b.c minimum
+    
+    print_str("Email: ")
+    print_str(email)
+    println()
+    print_str("Length: ")
+    print_i32(email_len)
+    println()
+    
+    if email_len >= min_email:
+        print_str("Email length acceptable")
+    else:
+        print_str("Email too short")
+    
+    println()
+    println()
+    
+    # === Tag Normalizer ===
+    print_str("=== HTML TAG NORMALIZER ===")
+    println()
+    
+    let tag1: str = "<HTML>"
+    let tag2: str = "<BODY>"
+    let tag3: str = "<DIV>"
+    
+    let norm1: str = lower(tag1)
+    let norm2: str = lower(tag2)
+    let norm3: str = lower(tag3)
+    
+    print_str("Original tags:")
+    println()
+    print_str("  ")
+    print_str(tag1)
+    println()
+    print_str("  ")
+    print_str(tag2)
+    println()
+    print_str("  ")
+    print_str(tag3)
+    println()
+    
+    print_str("Normalized tags:")
+    println()
+    print_str("  ")
+    print_str(norm1)
+    println()
+    print_str("  ")
+    print_str(norm2)
+    println()
+    print_str("  ")
+    print_str(norm3)
+    println()
+    println()
+    
+    # === String Builder Pattern ===
+    print_str("=== STRING BUILDER ===")
+    println()
+    
+    let prefix: str = "Dr. "
+    let first_name: str = "Jane"
+    let space: str = " "
+    let last_name: str = "Smith"
+    let suffix: str = ", PhD"
+    
+    # Build: "Dr. Jane Smith, PhD"
+    let temp1: str = str_concat(prefix, first_name)
+    let temp2: str = str_concat(temp1, space)
+    let temp3: str = str_concat(temp2, last_name)
+    let full_title: str = str_concat(temp3, suffix)
+    
+    print_str("Full title: ")
+    print_str(full_title)
+    println()
+    println()
+    
+    # === Configuration Parser ===
+    print_str("=== CONFIG PARSER ===")
+    println()
+    
+    let key1: str = "DEBUG"
+    let value1: str = "true"
+    
+    let key2: str = "PORT"
+    let value2: str = "8080"
+    
+    let key3: str = "HOST"
+    let value3: str = "localhost"
+    
+    # Build config string: "KEY=VALUE"
+    let equals: str = "="
+    let config1: str = str_concat(str_concat(key1, equals), value1)
+    let config2: str = str_concat(str_concat(key2, equals), value2)
+    let config3: str = str_concat(str_concat(key3, equals), value3)
+    
+    print_str("Config:")
+    println()
+    print_str("  ")
+    print_str(config1)
+    println()
+    print_str("  ")
+    print_str(config2)
+    println()
+    print_str("  ")
+    print_str(config3)
+    println()
+    println()
+    
+    # === String Comparison Table ===
+    print_str("=== COMPARISON TABLE ===")
+    println()
+    
+    let str_a: str = "alpha"
+    let str_b: str = "ALPHA"
+    let str_c: str = "beta"
+    
+    let str_a_upper: str = upper(str_a)
+    let str_b_upper: str = upper(str_b)
+    let str_c_upper: str = upper(str_c)
+    
+    print_str("Comparing case-insensitive:")
+    println()
+    
+    print_str("  ")
+    print_str(str_a)
+    print_str(" vs ")
+    print_str(str_b)
+    print_str(": ")
+    print_bool(str_eq(str_a_upper, str_b_upper))  # true
+    println()
+    
+    print_str("  ")
+    print_str(str_a)
+    print_str(" vs ")
+    print_str(str_c)
+    print_str(": ")
+    print_bool(str_eq(str_a_upper, str_c_upper))  # false
+    println()
+    
+    return 0

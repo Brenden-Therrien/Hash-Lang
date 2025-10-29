@@ -1,0 +1,66 @@
+# Hash Language - Clean Python-like Syntax Demo
+# Shows how Hash combines C performance with Python elegance
+
+fn main() -> i32:
+    # === Simple, Pythonic Conversions ===
+    let answer: i32 = 42
+    let as_decimal: f64 = float(answer)  # int → float
+    print_f64(as_decimal)  # 42.000000
+    
+    let pi: f64 = 3.14159
+    let whole_part: i32 = int(pi)  # float → int
+    print_i32(whole_part)  # 3
+    
+    println()
+    
+    # === Clean Math Functions ===
+    print_i32(abs(-25))      # Absolute value: 25
+    print_i32(min(10, 20))   # Minimum: 10  
+    print_i32(max(10, 20))   # Maximum: 20
+    print_f64(sqrt(9.0))     # Square root: 3.0
+    
+    println()
+    
+    # === Real-World Example: Circle Area ===
+    # A = π * r²
+    let radius: i32 = 5
+    let r_squared: i32 = radius * radius
+    let area: f64 = 3.14159 * float(r_squared)
+    print_f64(area)  # ~78.54
+    
+    println()
+    
+    # === Real-World Example: Distance Between Points ===
+    # distance = sqrt((x2-x1)² + (y2-y1)²)
+    let x1: i32 = 0
+    let y1: i32 = 0
+    let x2: i32 = 3
+    let y2: i32 = 4
+    
+    let dx: i32 = x2 - x1
+    let dy: i32 = y2 - y1
+    let sum_squares: i32 = dx*dx + dy*dy
+    let distance: f64 = sqrt(float(sum_squares))
+    print_f64(distance)  # 5.0
+    
+    println()
+    
+    # === Real-World Example: Temperature Range ===
+    let temps: i32 = 5  # Number of readings
+    let temp1: i32 = 72
+    let temp2: i32 = 95
+    let temp3: i32 = 58
+    let temp4: i32 = 81
+    let temp5: i32 = 64
+    
+    # Find min and max temperatures
+    let min_temp: i32 = min(temp1, min(temp2, min(temp3, min(temp4, temp5))))
+    let max_temp: i32 = max(temp1, max(temp2, max(temp3, max(temp4, temp5))))
+    
+    print_i32(min_temp)  # 58
+    print_i32(max_temp)  # 95
+    
+    let range: i32 = max_temp - min_temp
+    print_i32(range)  # 37
+    
+    return 0

@@ -1,0 +1,347 @@
+# Recursion Examples
+# Demonstrates recursive problem-solving patterns
+
+# ============================================
+# Basic Recursion
+# ============================================
+
+# Countdown to zero
+fn countdown(n: i32) -> i32:
+    if n <= 0:
+        return 0
+    else:
+        return countdown(n - 1)
+
+# Count up to n (returns n)
+fn countup(n: i32) -> i32:
+    if n <= 0:
+        return 0
+    else:
+        let prev: i32 = countup(n - 1)
+        return n
+
+# Sum from 1 to n
+fn sum_to_n(n: i32) -> i32:
+    if n <= 0:
+        return 0
+    else:
+        return n + sum_to_n(n - 1)
+
+# ============================================
+# Mathematical Recursion
+# ============================================
+
+# Factorial: n! = n * (n-1) * ... * 2 * 1
+fn factorial(n: i32) -> i32:
+    if n <= 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+# Fibonacci: F(n) = F(n-1) + F(n-2)
+fn fibonacci(n: i32) -> i32:
+    if n <= 0:
+        return 0
+    else:
+        if n == 1:
+            return 1
+        else:
+            return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Power: base^exp
+fn power(base: i32, exp: i32) -> i32:
+    if exp == 0:
+        return 1
+    else:
+        if exp == 1:
+            return base
+        else:
+            return base * power(base, exp - 1)
+
+# Sum of squares: 1^2 + 2^2 + ... + n^2
+fn sum_of_squares(n: i32) -> i32:
+    if n <= 0:
+        return 0
+    else:
+        return n * n + sum_of_squares(n - 1)
+
+# ============================================
+# Number Theory Recursion
+# ============================================
+
+# Greatest Common Divisor (Euclidean algorithm)
+fn gcd(a: i32, b: i32) -> i32:
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
+
+# Least Common Multiple
+fn lcm(a: i32, b: i32) -> i32:
+    if a == 0:
+        return 0
+    else:
+        if b == 0:
+            return 0
+        else:
+            let divisor: i32 = gcd(a, b)
+            return a / divisor * b
+
+# Check if number is prime (helper)
+fn is_prime_helper(n: i32, divisor: i32) -> bool:
+    if divisor * divisor > n:
+        return true
+    else:
+        if n % divisor == 0:
+            return false
+        else:
+            return is_prime_helper(n, divisor + 1)
+
+# Check if prime (main function)
+fn is_prime(n: i32) -> bool:
+    if n <= 1:
+        return false
+    else:
+        if n <= 3:
+            return true
+        else:
+            if n % 2 == 0:
+                return false
+            else:
+                return is_prime_helper(n, 3)
+
+# ============================================
+# Digit Manipulation Recursion
+# ============================================
+
+# Sum of digits
+fn sum_digits(n: i32) -> i32:
+    if n == 0:
+        return 0
+    else:
+        if n < 0:
+            return sum_digits(-n)
+        else:
+            return n % 10 + sum_digits(n / 10)
+
+# Count digits
+fn count_digits(n: i32) -> i32:
+    if n == 0:
+        return 1
+    else:
+        if n < 0:
+            return count_digits(-n)
+        else:
+            if n < 10:
+                return 1
+            else:
+                return 1 + count_digits(n / 10)
+
+# Reverse number
+fn reverse_helper(n: i32, reversed: i32) -> i32:
+    if n == 0:
+        return reversed
+    else:
+        let new_reversed: i32 = reversed * 10 + n % 10
+        return reverse_helper(n / 10, new_reversed)
+
+fn reverse_number(n: i32) -> i32:
+    if n < 0:
+        return -reverse_helper(-n, 0)
+    else:
+        return reverse_helper(n, 0)
+
+# Check if palindrome
+fn is_palindrome(n: i32) -> bool:
+    if n < 0:
+        return false
+    else:
+        let reversed: i32 = reverse_number(n)
+        return n == reversed
+
+# ============================================
+# Advanced Recursion Patterns
+# ============================================
+
+# Binary search (recursive) - search in range [low, high]
+fn binary_search(target: i32, low: i32, high: i32) -> i32:
+    if low > high:
+        return -1
+    else:
+        let mid: i32 = low + (high - low) / 2
+        
+        if mid == target:
+            return mid
+        else:
+            if mid < target:
+                return binary_search(target, mid + 1, high)
+            else:
+                return binary_search(target, low, mid - 1)
+
+# Exponentiation by squaring (fast power)
+fn fast_power(base: i32, exp: i32) -> i32:
+    if exp == 0:
+        return 1
+    else:
+        if exp == 1:
+            return base
+        else:
+            if exp % 2 == 0:
+                let half: i32 = fast_power(base, exp / 2)
+                return half * half
+            else:
+                let half_odd: i32 = fast_power(base, exp / 2)
+                return base * half_odd * half_odd
+
+# Tower of Hanoi - count moves
+fn hanoi_moves(n: i32) -> i32:
+    if n == 1:
+        return 1
+    else:
+        return 2 * hanoi_moves(n - 1) + 1
+
+# Binomial coefficient C(n, k) = n! / (k! * (n-k)!)
+fn binomial(n: i32, k: i32) -> i32:
+    if k == 0:
+        return 1
+    else:
+        if k == n:
+            return 1
+        else:
+            if k > n:
+                return 0
+            else:
+                return binomial(n - 1, k - 1) + binomial(n - 1, k)
+
+# ============================================
+# Tail Recursion Examples
+# ============================================
+# Note: These are tail-recursive and could be optimized by compiler
+
+# Tail-recursive factorial
+fn factorial_tail_helper(n: i32, acc: i32) -> i32:
+    if n <= 1:
+        return acc
+    else:
+        return factorial_tail_helper(n - 1, n * acc)
+
+fn factorial_tail(n: i32) -> i32:
+    return factorial_tail_helper(n, 1)
+
+# Tail-recursive sum
+fn sum_tail_helper(n: i32, acc: i32) -> i32:
+    if n <= 0:
+        return acc
+    else:
+        return sum_tail_helper(n - 1, acc + n)
+
+fn sum_tail(n: i32) -> i32:
+    return sum_tail_helper(n, 0)
+
+# Tail-recursive Fibonacci
+fn fib_tail_helper(n: i32, a: i32, b: i32) -> i32:
+    if n == 0:
+        return a
+    else:
+        if n == 1:
+            return b
+        else:
+            return fib_tail_helper(n - 1, b, a + b)
+
+fn fibonacci_tail(n: i32) -> i32:
+    return fib_tail_helper(n, 0, 1)
+
+# ============================================
+# Multiple Recursion (Multiple Recursive Calls)
+# ============================================
+
+# Tribonacci: T(n) = T(n-1) + T(n-2) + T(n-3)
+fn tribonacci(n: i32) -> i32:
+    if n == 0:
+        return 0
+    else:
+        if n == 1:
+            return 1
+        else:
+            if n == 2:
+                return 1
+            else:
+                return tribonacci(n - 1) + tribonacci(n - 2) + tribonacci(n - 3)
+
+# Catalan numbers (recursive definition)
+fn catalan(n: i32) -> i32:
+    if n <= 1:
+        return 1
+    else:
+        let mut sum: i32 = 0
+        let mut i: i32 = 0
+        while i < n:
+            let left: i32 = catalan(i)
+            let right: i32 = catalan(n - 1 - i)
+            sum = sum + left * right
+            i = i + 1
+        return sum
+
+# ============================================
+# Pure Recursive Functions
+# ============================================
+
+# Pure recursive GCD
+pure fn gcd_pure(a: i32, b: i32) -> i32:
+    if b == 0:
+        return a
+    else:
+        return gcd_pure(b, a % b)
+
+# Pure recursive power
+pure fn power_pure(base: i32, exp: i32) -> i32:
+    if exp == 0:
+        return 1
+    else:
+        if exp == 1:
+            return base
+        else:
+            return base * power_pure(base, exp - 1)
+
+# Pure recursive sum
+pure fn sum_pure(n: i32) -> i32:
+    if n <= 0:
+        return 0
+    else:
+        return n + sum_pure(n - 1)
+
+# ============================================
+# Main Function
+# ============================================
+
+fn main() -> i32:
+    # Test basic recursion
+    let sum: i32 = sum_to_n(100)
+    
+    # Test mathematical recursion
+    let fact: i32 = factorial(10)
+    let fib: i32 = fibonacci(15)
+    let pow: i32 = power(2, 10)
+    
+    # Test number theory
+    let divisor: i32 = gcd(48, 18)
+    let prime: bool = is_prime(17)
+    
+    # Test digit manipulation
+    let digit_sum: i32 = sum_digits(12345)
+    let reversed: i32 = reverse_number(12345)
+    
+    # Test advanced recursion
+    let found: i32 = binary_search(42, 0, 100)
+    let fast_pow: i32 = fast_power(2, 10)
+    let moves: i32 = hanoi_moves(5)
+    
+    # Test tail recursion
+    let tail_fact: i32 = factorial_tail(10)
+    let tail_fib: i32 = fibonacci_tail(15)
+    
+    # Test pure recursion
+    let pure_gcd: i32 = gcd_pure(48, 18)
+    let pure_sum: i32 = sum_pure(100)
+    
+    return 0

@@ -1,0 +1,415 @@
+# Advanced Patterns
+# Complex programming patterns and techniques in Hash
+
+# ============================================
+# Higher-Order Function Patterns
+# ============================================
+# Note: Hash doesn't have first-class functions yet,
+# but we can demonstrate the patterns manually
+
+# Apply a transformation and reduce
+fn sum_of_squares_range(start: i32, end: i32) -> i32:
+    let mut sum: i32 = 0
+    let mut i: i32 = start
+    
+    while i <= end:
+        sum = sum + i * i
+        i = i + 1
+    
+    return sum
+
+# Filter and count pattern
+fn count_evens_in_range(start: i32, end: i32) -> i32:
+    let mut count: i32 = 0
+    let mut i: i32 = start
+    
+    while i <= end:
+        if i % 2 == 0:
+            count = count + 1
+        else:
+            count = count
+        i = i + 1
+    
+    return count
+
+# Map and reduce pattern
+fn sum_transformed(start: i32, end: i32) -> i32:
+    let mut sum: i32 = 0
+    let mut i: i32 = start
+    
+    while i <= end:
+        let transformed: i32 = i * 2 + 1
+        sum = sum + transformed
+        i = i + 1
+    
+    return sum
+
+# ============================================
+# Accumulator Patterns
+# ============================================
+
+# Running product
+fn product_range(start: i32, end: i32) -> i32:
+    let mut product: i32 = 1
+    let mut i: i32 = start
+    
+    while i <= end:
+        product = product * i
+        i = i + 1
+    
+    return product
+
+# Running minimum
+fn find_minimum(start: i32, end: i32) -> i32:
+    let mut min: i32 = start
+    let mut i: i32 = start + 1
+    
+    while i <= end:
+        if i < min:
+            min = i
+        else:
+            min = min
+        i = i + 1
+    
+    return min
+
+# Running maximum
+fn find_maximum(start: i32, end: i32) -> i32:
+    let mut max: i32 = start
+    let mut i: i32 = start + 1
+    
+    while i <= end:
+        if i > max:
+            max = i
+        else:
+            max = max
+        i = i + 1
+    
+    return max
+
+# Multiple accumulators
+fn sum_and_product(start: i32, end: i32) -> i32:
+    let mut sum: i32 = 0
+    let mut product: i32 = 1
+    let mut i: i32 = start
+    
+    while i <= end:
+        sum = sum + i
+        product = product * i
+        i = i + 1
+    
+    # Return sum (in real app, might return both)
+    return sum
+
+# ============================================
+# State Machine Patterns
+# ============================================
+
+# Simple state machine: parse sign and number
+fn parse_number_sign(is_negative: bool, digit_count: i32) -> i32:
+    if is_negative:
+        if digit_count > 0:
+            return -1  # Valid negative number
+        else:
+            return 0   # Invalid: just a minus sign
+    else:
+        if digit_count > 0:
+            return 1   # Valid positive number
+        else:
+            return 0   # Invalid: no digits
+
+# State transition counter
+fn count_state_changes(n: i32) -> i32:
+    let mut changes: i32 = 0
+    let mut prev_state: bool = false
+    let mut i: i32 = 0
+    
+    while i < n:
+        let curr_state: bool = i % 2 == 0
+        if curr_state != prev_state:
+            changes = changes + 1
+        else:
+            changes = changes
+        prev_state = curr_state
+        i = i + 1
+    
+    return changes
+
+# ============================================
+# Dynamic Programming Patterns
+# ============================================
+
+# Fibonacci with memoization (simplified - using iteration)
+fn fibonacci_dp(n: i32) -> i32:
+    if n <= 1:
+        return n
+    
+    let mut prev: i32 = 0
+    let mut curr: i32 = 1
+    let mut i: i32 = 2
+    
+    while i <= n:
+        let next: i32 = prev + curr
+        prev = curr
+        curr = next
+        i = i + 1
+    
+    return curr
+
+# Count ways to climb stairs (1 or 2 steps at a time)
+fn climb_stairs(n: i32) -> i32:
+    if n <= 2:
+        return n
+    
+    let mut one_step_before: i32 = 2
+    let mut two_steps_before: i32 = 1
+    let mut i: i32 = 3
+    
+    while i <= n:
+        let current: i32 = one_step_before + two_steps_before
+        two_steps_before = one_step_before
+        one_step_before = current
+        i = i + 1
+    
+    return one_step_before
+
+# Maximum sum of non-adjacent numbers
+fn max_non_adjacent_sum(n: i32) -> i32:
+    if n == 0:
+        return 0
+    
+    if n == 1:
+        return 1
+    
+    let mut include: i32 = 1
+    let mut exclude: i32 = 0
+    let mut i: i32 = 2
+    
+    while i <= n:
+        let mut new_exclude: i32 = 0
+        if include > exclude:
+            new_exclude = include
+        else:
+            new_exclude = exclude
+        
+        include = exclude + i
+        exclude = new_exclude
+        i = i + 1
+    
+    if include > exclude:
+        return include
+    else:
+        return exclude
+
+# ============================================
+# Sliding Window Patterns
+# ============================================
+
+# Maximum sum of k consecutive elements (simulated)
+fn max_sum_window(n: i32, k: i32) -> i32:
+    if k > n:
+        return 0
+    
+    # Calculate initial window
+    let mut window_sum: i32 = 0
+    let mut i: i32 = 0
+    
+    while i < k:
+        window_sum = window_sum + i
+        i = i + 1
+    
+    let mut max_sum: i32 = window_sum
+    
+    # Slide window
+    while i < n:
+        window_sum = window_sum + i - (i - k)
+        if window_sum > max_sum:
+            max_sum = window_sum
+        else:
+            max_sum = max_sum
+        i = i + 1
+    
+    return max_sum
+
+# ============================================
+# Two Pointer Patterns
+# ============================================
+
+# Check if number is palindrome using two pointers
+fn is_palindrome_two_pointer(n: i32) -> bool:
+    if n < 0:
+        return false
+    
+    # Get reversed number
+    let mut reversed: i32 = 0
+    let mut temp: i32 = n
+    
+    while temp > 0:
+        reversed = reversed * 10 + temp % 10
+        temp = temp / 10
+    
+    return n == reversed
+
+# Find pair with given sum (in range 1..n)
+fn has_pair_with_sum(n: i32, target: i32) -> bool:
+    let mut left: i32 = 1
+    let mut right: i32 = n
+    
+    while left < right:
+        let sum: i32 = left + right
+        if sum == target:
+            return true
+        else:
+            if sum < target:
+                left = left + 1
+            else:
+                right = right - 1
+    
+    return false
+
+# ============================================
+# Greedy Patterns
+# ============================================
+
+# Coin change (greedy - works for standard denominations)
+fn min_coins_greedy(amount: i32) -> i32:
+    let mut remaining: i32 = amount
+    let mut coins: i32 = 0
+    
+    # Denominations: 25, 10, 5, 1
+    while remaining >= 25:
+        coins = coins + 1
+        remaining = remaining - 25
+    
+    while remaining >= 10:
+        coins = coins + 1
+        remaining = remaining - 10
+    
+    while remaining >= 5:
+        coins = coins + 1
+        remaining = remaining - 5
+    
+    coins = coins + remaining
+    return coins
+
+# Activity selection (maximize count)
+fn max_activities(n: i32) -> i32:
+    # Simplified: activities at times 1, 2, 3, ..., n
+    # Always can do all non-overlapping
+    return n / 2 + 1
+
+# ============================================
+# Bit Manipulation Patterns
+# ============================================
+
+# Count set bits (Hamming weight) - simplified for i32
+fn count_set_bits(n: i32) -> i32:
+    let mut count: i32 = 0
+    let mut num: i32 = n
+    
+    while num > 0:
+        if num % 2 == 1:
+            count = count + 1
+        else:
+            count = count
+        num = num / 2
+    
+    return count
+
+# Check if power of two
+fn is_power_of_two(n: i32) -> bool:
+    if n == 0:
+        return false
+    else:
+        # Power of 2 has only one bit set
+        let mut temp: i32 = n
+        let mut bit_count: i32 = 0
+        while temp > 0:
+            if temp % 2 == 1:
+                bit_count = bit_count + 1
+            else:
+                bit_count = bit_count
+            temp = temp / 2
+        return bit_count == 1
+
+# Get bit at position (simplified)
+fn get_bit(n: i32, pos: i32) -> bool:
+    let shifted: i32 = n >> pos
+    return shifted % 2 == 1
+
+# Set bit at position
+fn set_bit(n: i32, pos: i32) -> i32:
+    let mask: i32 = 1 << pos
+    return n | mask
+
+# Clear bit at position (simplified)
+fn clear_bit(n: i32, pos: i32) -> i32:
+    let mask: i32 = 1 << pos
+    let all_ones: i32 = -1
+    let inverted: i32 = all_ones ^ mask
+    return n & inverted
+
+# Toggle bit at position
+fn toggle_bit(n: i32, pos: i32) -> i32:
+    let mask: i32 = 1 << pos
+    return n ^ mask
+
+# ============================================
+# Mathematical Patterns
+# ============================================
+
+# Sieve of Eratosthenes simulation (count primes)
+fn count_primes_sieve(n: i32) -> i32:
+    if n <= 2:
+        return 0
+    
+    let mut count: i32 = 0
+    let mut i: i32 = 2
+    
+    while i < n:
+        let mut is_prime: bool = true
+        let mut j: i32 = 2
+        
+        while j * j <= i:
+            if i % j == 0:
+                is_prime = false
+            else:
+                j = j + 1
+            if is_prime:
+                j = j + 1
+            else:
+                j = i  # Break
+        
+        if is_prime:
+            count = count + 1
+        else:
+            count = count
+        
+        i = i + 1
+    
+    return count
+
+# ============================================
+# Main Function
+# ============================================
+
+fn main() -> i32:
+    # Test higher-order patterns
+    let sum_squares: i32 = sum_of_squares_range(1, 10)
+    let evens: i32 = count_evens_in_range(1, 100)
+    
+    # Test accumulators
+    let product: i32 = product_range(1, 5)
+    
+    # Test DP patterns
+    let fib: i32 = fibonacci_dp(20)
+    let stairs: i32 = climb_stairs(10)
+    
+    # Test bit manipulation
+    let bits: i32 = count_set_bits(255)
+    let is_pow2: bool = is_power_of_two(16)
+    
+    # Test greedy
+    let coins: i32 = min_coins_greedy(99)
+    
+    return 0

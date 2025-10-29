@@ -1,0 +1,102 @@
+# Trigonometry Functions Example
+# Demonstrates sin, cos, tan, asin, acos, atan
+
+fn main() -> i32:
+    println()
+    print_str("=== Trigonometry Functions ===")
+    println()
+    println()
+    
+    # Define PI
+    let pi: f64 = 3.14159265359
+    
+    # Common angles in radians
+    print_str("Angle: 0 radians")
+    println()
+    print_str("  sin(0) = ")
+    print_f64(sin(0.0))
+    println()
+    print_str("  cos(0) = ")
+    print_f64(cos(0.0))
+    println()
+    print_str("  tan(0) = ")
+    print_f64(tan(0.0))
+    println()
+    println()
+    
+    # pi/6 (30 degrees)
+    let angle30: f64 = pi / 6.0
+    print_str("Angle: pi/6 (30 degrees)")
+    println()
+    print_str("  sin(pi/6) = ")
+    print_f64(sin(angle30))
+    println()
+    print_str("  cos(pi/6) = ")
+    print_f64(cos(angle30))
+    println()
+    print_str("  tan(pi/6) = ")
+    print_f64(tan(angle30))
+    println()
+    println()
+    
+    # pi/4 (45 degrees)
+    let angle45: f64 = pi / 4.0
+    print_str("Angle: pi/4 (45 degrees)")
+    println()
+    print_str("  sin(pi/4) = ")
+    print_f64(sin(angle45))
+    println()
+    print_str("  cos(pi/4) = ")
+    print_f64(cos(angle45))
+    println()
+    print_str("  tan(pi/4) = ")
+    print_f64(tan(angle45))
+    println()
+    println()
+    
+    # pi/2 (90 degrees)
+    let angle90: f64 = pi / 2.0
+    print_str("Angle: pi/2 (90 degrees)")
+    println()
+    print_str("  sin(pi/2) = ")
+    print_f64(sin(angle90))
+    println()
+    print_str("  cos(pi/2) = ")
+    print_f64(cos(angle90))
+    println()
+    println()
+    
+    # Inverse trig functions
+    print_str("=== Inverse Trigonometry ===")
+    println()
+    println()
+    
+    print_str("asin(0.5) = ")
+    print_f64(asin(0.5))
+    print_str(" radians")
+    println()
+    
+    print_str("acos(0.5) = ")
+    print_f64(acos(0.5))
+    print_str(" radians")
+    println()
+    
+    print_str("atan(1.0) = ")
+    print_f64(atan(1.0))
+    print_str(" radians (pi/4)")
+    println()
+    println()
+    
+    # Pythagorean identity: sin²(x) + cos²(x) = 1
+    print_str("=== Pythagorean Identity ===")
+    println()
+    let testAngle: f64 = pi / 3.0
+    let sinVal: f64 = sin(testAngle)
+    let cosVal: f64 = cos(testAngle)
+    let sum: f64 = pow(sinVal, 2.0) + pow(cosVal, 2.0)
+    print_str("sin²(pi/3) + cos²(pi/3) = ")
+    print_f64(sum)
+    print_str(" (should be 1.0)")
+    println()
+    
+    return 0

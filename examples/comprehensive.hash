@@ -1,0 +1,255 @@
+# Comprehensive Hash Language Example
+# This example demonstrates all major features of the Hash language
+
+# ============================================
+# Global Variables
+# ============================================
+
+# Immutable global constant
+let PI: f64 = 3.14159
+
+# Pure-local variable - only accessible by pure functions
+let pure_local SAFE_CONSTANT: i32 = 42
+
+# ============================================
+# Pure Functions (No Side Effects)
+# ============================================
+
+# Pure function: simple arithmetic
+pure fn add(a: i32, b: i32) -> i32:
+    return a + b
+
+# Pure function: geometric calculation
+pure fn circle_area(radius: f64) -> f64:
+    return PI * radius * radius
+
+# Pure function: accessing pure_local variable
+pure fn get_safe_constant() -> i32:
+    return SAFE_CONSTANT
+
+# Pure function: recursive calculation
+pure fn power(base: i32, exp: i32) -> i32:
+    if exp == 0:
+        return 1
+    else:
+        if exp == 1:
+            return base
+        else:
+            return base * power(base, exp - 1)
+
+# Pure function: boolean logic
+pure fn is_even(n: i32) -> bool:
+    return n % 2 == 0
+
+# ============================================
+# Regular Functions (Can Have Side Effects)
+# ============================================
+
+# Function with local mutable variables
+fn calculate_factorial(n: i32) -> i32:
+    if n <= 1:
+        return 1
+    
+    let mut result: i32 = 1
+    let mut i: i32 = 2
+    
+    while i <= n:
+        result = result * i
+        i = i + 1
+    
+    return result
+
+# Function demonstrating all comparison operators
+fn compare_numbers(a: i32, b: i32) -> i32:
+    if a == b:
+        return 0
+    else:
+        if a < b:
+            return -1
+        else:
+            return 1
+
+# Function demonstrating bitwise operations
+fn bitwise_demo(a: u32, b: u32) -> u32:
+    let and_result: u32 = a & b
+    let or_result: u32 = a | b
+    let xor_result: u32 = a ^ b
+    let shifted: u32 = a << 2
+    
+    return xor_result
+
+# ============================================
+# Control Flow Examples
+# ============================================
+
+# Nested if-else
+fn classify_number(n: i32) -> i32:
+    if n < 0:
+        return -1
+    else:
+        if n == 0:
+            return 0
+        else:
+            return 1
+
+# While loop with multiple conditions
+fn sum_range(start: i32, end: i32) -> i32:
+    let mut sum: i32 = 0
+    let mut i: i32 = start
+    
+    while i <= end:
+        sum = sum + i
+        i = i + 1
+    
+    return sum
+
+# ============================================
+# Type System Demonstration
+# ============================================
+
+# Working with different integer types
+fn integer_types_demo() -> i64:
+    let small: i8 = 127
+    let medium: i16 = 32000
+    let normal: i32 = 2000000
+    let large: i64 = 9000000000
+    
+    return large
+
+# Working with unsigned integers
+fn unsigned_demo() -> u64:
+    let byte: u8 = 255
+    let word: u16 = 65535
+    let dword: u32 = 4294967295
+    let qword: u64 = 18446744073709551615
+    
+    return qword
+
+# Working with floating point
+fn float_demo() -> f64:
+    let single: f32 = 3.14
+    let double: f64 = 2.71828
+    
+    return double
+
+# Boolean operations
+fn boolean_demo() -> bool:
+    let a: bool = true
+    let b: bool = false
+    
+    let and_result: bool = a && b
+    let or_result: bool = a || b
+    let not_result: bool = !a
+    
+    return or_result
+
+# ============================================
+# Advanced Examples
+# ============================================
+
+# Fibonacci (recursive)
+fn fibonacci_recursive(n: i32) -> i32:
+    if n <= 1:
+        return n
+    else:
+        return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
+
+# Fibonacci (iterative - more efficient)
+fn fibonacci_iterative(n: i32) -> i32:
+    if n <= 1:
+        return n
+    
+    let mut prev: i32 = 0
+    let mut curr: i32 = 1
+    let mut i: i32 = 2
+    
+    while i <= n:
+        let mut next: i32 = prev + curr
+        prev = curr
+        curr = next
+        i = i + 1
+    
+    return curr
+
+# Greatest common divisor (Euclidean algorithm)
+fn gcd(a: i32, b: i32) -> i32:
+    let mut x: i32 = a
+    let mut y: i32 = b
+    
+    while y != 0:
+        let mut temp: i32 = y
+        y = x % y
+        x = temp
+    
+    return x
+
+# Check if number is prime
+fn is_prime(n: i32) -> bool:
+    if n <= 1:
+        return false
+    
+    if n <= 3:
+        return true
+    
+    if n % 2 == 0:
+        return false
+    
+    let mut i: i32 = 3
+    while i * i <= n:
+        if n % i == 0:
+            return false
+        i = i + 2
+    
+    return true
+
+# ============================================
+# Demonstrating Pure Function Constraints
+# ============================================
+
+# This would cause an error if uncommented:
+# pure fn invalid_pure() -> i32:
+#     return calculate_factorial(5)  # ERROR: pure function cannot call non-pure function
+
+# This would cause an error if uncommented:
+# fn invalid_access() -> i32:
+#     return SAFE_CONSTANT  # ERROR: non-pure function cannot access pure_local
+
+# ============================================
+# Main Function
+# ============================================
+
+fn main() -> i32:
+    # Test pure functions
+    let sum: i32 = add(5, 10)
+    let area: f64 = circle_area(5.0)
+    let safe: i32 = get_safe_constant()
+    let pow_result: i32 = power(2, 10)
+    let even: bool = is_even(42)
+    
+    # Test factorial
+    let fact: i32 = calculate_factorial(5)
+    
+    # Test comparisons
+    let cmp: i32 = compare_numbers(10, 20)
+    
+    # Test bitwise
+    let bits: u32 = bitwise_demo(15, 7)
+    
+    # Test classification
+    let class: i32 = classify_number(-5)
+    
+    # Test range sum
+    let range_sum: i32 = sum_range(1, 10)
+    
+    # Test Fibonacci
+    let fib_rec: i32 = fibonacci_recursive(10)
+    let fib_iter: i32 = fibonacci_iterative(10)
+    
+    # Test GCD
+    let divisor: i32 = gcd(48, 18)
+    
+    # Test prime
+    let prime: bool = is_prime(17)
+    
+    # All tests passed if we reach here
+    return 0

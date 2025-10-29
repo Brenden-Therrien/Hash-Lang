@@ -1,0 +1,252 @@
+# Hash Language - Syntax Highlighting Showcase
+# This file demonstrates all the syntax highlighting colors
+
+# ═══════════════════════════════════════════════════════
+# SPECIAL KEYWORDS - These are highlighted in bright colors
+# ═══════════════════════════════════════════════════════
+
+# PURE keyword - BRIGHT PINK (#ff6b9d) - Bold
+pure fn pure_calculation(x: i32, y: i32) -> i32:
+    return x + y
+
+# PURE_LOCAL keyword - VIBRANT ORANGE (#ff9d00) - Bold
+let pure_local secret_data: i32 = 42
+let pure_local config: str = "settings"
+
+# ═══════════════════════════════════════════════════════
+# CONTROL FLOW - Bright Red
+# ═══════════════════════════════════════════════════════
+
+fn control_demo(x: i32) -> i32:
+    if x > 0:
+        return x
+    else:
+        while x < 10:
+            let mut x = x + 1
+        
+        return x
+
+# ═══════════════════════════════════════════════════════
+# BUILT-IN FUNCTIONS - Warm Orange  
+# ═══════════════════════════════════════════════════════
+
+fn builtin_showcase():
+    # Console I/O
+    print_i32(42)
+    print_f64(3.14)
+    print_str("Hello Hash!")
+    println()
+    
+    # User Input
+    let num: i32 = read_i32()
+    let pi: f64 = read_f64()
+    
+    # Type Conversions
+    let f: f64 = float(100)
+    let i: i32 = int(3.14)
+    
+    # Math Functions
+    let a: i32 = abs(-10)
+    let m: i32 = min(5, 10)
+    let x: i32 = max(5, 10)
+    let s: f64 = sqrt(16.0)
+    let p: f64 = pow(2.0, 8.0)
+    let fl: f64 = floor(3.7)
+    let ce: f64 = ceil(3.2)
+    let ro: f64 = round(3.5)
+    
+    # Trigonometry
+    let sine: f64 = sin(1.57)
+    let cosine: f64 = cos(0.0)
+    let tangent: f64 = tan(0.785)
+    let asin_v: f64 = asin(0.5)
+    let acos_v: f64 = acos(0.5)
+    let atan_v: f64 = atan(1.0)
+    
+    # Logarithms
+    let ex: f64 = exp(1.0)
+    let ln: f64 = log(2.718)
+    let lg2: f64 = log2(8.0)
+    let lg10: f64 = log10(100.0)
+    
+    # System Functions
+    let t: i64 = hash_time()
+    let c: f64 = hash_clock()
+    let r: f64 = random()
+    seed_random(12345)
+    let rr: i32 = random_range(1, 100)
+    
+    # String Functions
+    let length: i32 = len("Hello")
+    let combined: str = str_concat("Hello", " World")
+    let equal: bool = str_eq("a", "b")
+    let upper_text: str = upper("hello")
+    let lower_text: str = lower("WORLD")
+    
+    # File I/O
+    let content: str = file_read("data.txt")
+    let success: bool = file_write("output.txt", "data")
+    let exists: bool = file_exists("file.txt")
+    let deleted: bool = file_delete("temp.txt")
+
+# ═══════════════════════════════════════════════════════
+# TYPES - Cyan Blue
+# ═══════════════════════════════════════════════════════
+
+fn type_showcase():
+    # Integer types
+    let i8_val: i8 = 127
+    let i16_val: i16 = 32767
+    let i32_val: i32 = 2147483647
+    let i64_val: i64 = 9223372036854775807
+    
+    # Unsigned integers
+    let u8_val: u8 = 255
+    let u16_val: u16 = 65535
+    let u32_val: u32 = 4294967295
+    let u64_val: u64 = 18446744073709551615
+    
+    # Floats
+    let f32_val: f32 = 3.14
+    let f64_val: f64 = 2.71828
+    
+    # Other types
+    let bool_val: bool = true
+    let str_val: str = "text"
+
+# ═══════════════════════════════════════════════════════
+# STRINGS & ESCAPES - Light Blue
+# ═══════════════════════════════════════════════════════
+
+fn string_demo():
+    let simple: str = "Hello, World!"
+    let with_newline: str = "Line 1\nLine 2"
+    let with_tab: str = "Column1\tColumn2"
+    let with_quote: str = "He said \"Hello\""
+    let with_backslash: str = "Path: C:\\Users\\Name"
+
+# ═══════════════════════════════════════════════════════
+# NUMBERS - Cyan
+# ═══════════════════════════════════════════════════════
+
+fn number_demo():
+    # Integers
+    let dec: i32 = 12345
+    let zero: i32 = 0
+    let neg: i32 = -999
+    
+    # Floats
+    let pi: f64 = 3.14159
+    let scientific: f64 = 1.5e-10
+    let large: f64 = 1.0e308
+
+# ═══════════════════════════════════════════════════════
+# OPERATORS - Bright Red
+# ═══════════════════════════════════════════════════════
+
+fn operator_demo(a: i32, b: i32) -> bool:
+    # Arithmetic
+    let sum: i32 = a + b
+    let diff: i32 = a - b
+    let prod: i32 = a * b
+    let quot: i32 = a / b
+    let rem: i32 = a % b
+    
+    # Comparison
+    let eq: bool = a == b
+    let neq: bool = a != b
+    let lt: bool = a < b
+    let lte: bool = a <= b
+    let gt: bool = a > b
+    let gte: bool = a >= b
+    
+    # Logical
+    let and_op: bool = true && false
+    let or_op: bool = true || false
+    let not_op: bool = !true
+    
+    # Bitwise
+    let bit_and: i32 = a & b
+    let bit_or: i32 = a | b
+    let bit_xor: i32 = a ^ b
+    let bit_not: i32 = ~a
+    let left_shift: i32 = a << 2
+    let right_shift: i32 = a >> 2
+    
+    return true
+
+# ═══════════════════════════════════════════════════════
+# CONSTANTS - Cyan
+# ═══════════════════════════════════════════════════════
+
+fn constant_demo():
+    let yes: bool = true
+    let no: bool = false
+
+# ═══════════════════════════════════════════════════════
+# PURE FUNCTIONS WITH PURE_LOCAL - DEMONSTRATION
+# ═══════════════════════════════════════════════════════
+
+# PURE (PINK) with PURE_LOCAL (ORANGE) - Hash's unique features
+let pure_local counter: i32 = 0
+let pure_local max_value: i32 = 1000
+
+pure fn get_counter() -> i32:
+    return counter
+
+pure fn is_within_limit(value: i32) -> bool:
+    if value < max_value:
+        return true
+    else:
+        return false
+
+pure fn pure_math(x: i32, y: i32) -> i32:
+    let result: i32 = x * y + counter
+    return result
+
+# ═══════════════════════════════════════════════════════
+# COMPREHENSIVE EXAMPLE - All features together
+# ═══════════════════════════════════════════════════════
+
+let pure_local app_config: str = "config.txt"
+
+pure fn load_config() -> str:
+    return app_config
+
+fn main() -> i32:
+    # Print vibrant welcome message
+    print_str("╔═══════════════════════════════════════╗")
+    println()
+    print_str("║   Hash Syntax Highlighting Demo!     ║")
+    println()
+    print_str("╚═══════════════════════════════════════╝")
+    println()
+    
+    # Demo pure functions (PINK)
+    let config: str = load_config()
+    print_str("Config: ")
+    print_str(config)
+    println()
+    
+    # Demo pure_local access (ORANGE)
+    let count: i32 = get_counter()
+    print_i32(count)
+    println()
+    
+    # Demo built-in functions (WARM ORANGE)
+    let sqrt_16: f64 = sqrt(16.0)
+    print_f64(sqrt_16)
+    println()
+    
+    # Demo strings (LIGHT BLUE)
+    let message: str = str_concat("Hello", " World")
+    print_str(message)
+    println()
+    
+    # Demo file I/O (WARM ORANGE)
+    if file_exists("test.txt"):
+        let content: str = file_read("test.txt")
+        print_str(content)
+        println()
+    
+    return 0

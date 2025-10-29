@@ -1,0 +1,139 @@
+# Logarithmic and Exponential Functions
+# Demonstrates exp, log, log2, log10
+
+fn main() -> i32:
+    println()
+    print_str("=== Exponential Functions ===")
+    println()
+    println()
+    
+    # e^x (Euler's number)
+    print_str("exp(0.0) = ")
+    print_f64(exp(0.0))
+    print_str(" (e^0 = 1)")
+    println()
+    
+    print_str("exp(1.0) = ")
+    print_f64(exp(1.0))
+    print_str(" (e ≈ 2.71828)")
+    println()
+    
+    print_str("exp(2.0) = ")
+    print_f64(exp(2.0))
+    print_str(" (e² ≈ 7.389)")
+    println()
+    
+    print_str("exp(10.0) = ")
+    print_f64(exp(10.0))
+    println()
+    println()
+    
+    # Natural logarithm
+    print_str("=== Natural Logarithm (ln) ===")
+    println()
+    println()
+    
+    print_str("log(1.0) = ")
+    print_f64(log(1.0))
+    print_str(" (ln(1) = 0)")
+    println()
+    
+    let e: f64 = exp(1.0)
+    print_str("log(e) = ")
+    print_f64(log(e))
+    print_str(" (ln(e) = 1)")
+    println()
+    
+    print_str("log(10.0) = ")
+    print_f64(log(10.0))
+    println()
+    
+    print_str("log(100.0) = ")
+    print_f64(log(100.0))
+    println()
+    println()
+    
+    # Base-2 logarithm
+    print_str("=== Base-2 Logarithm ===")
+    println()
+    println()
+    
+    print_str("log2(1.0) = ")
+    print_f64(log2(1.0))
+    println()
+    
+    print_str("log2(2.0) = ")
+    print_f64(log2(2.0))
+    println()
+    
+    print_str("log2(8.0) = ")
+    print_f64(log2(8.0))
+    print_str(" (2³ = 8)")
+    println()
+    
+    print_str("log2(1024.0) = ")
+    print_f64(log2(1024.0))
+    print_str(" (2^10 = 1024)")
+    println()
+    println()
+    
+    # Base-10 logarithm
+    print_str("=== Base-10 Logarithm ===")
+    println()
+    println()
+    
+    print_str("log10(1.0) = ")
+    print_f64(log10(1.0))
+    println()
+    
+    print_str("log10(10.0) = ")
+    print_f64(log10(10.0))
+    println()
+    
+    print_str("log10(100.0) = ")
+    print_f64(log10(100.0))
+    println()
+    
+    print_str("log10(1000.0) = ")
+    print_f64(log10(1000.0))
+    println()
+    println()
+    
+    # Relationship: exp(log(x)) = x
+    print_str("=== Identity: exp(log(x)) = x ===")
+    println()
+    let testVal: f64 = 42.0
+    let result: f64 = exp(log(testVal))
+    print_str("exp(log(42.0)) = ")
+    print_f64(result)
+    println()
+    println()
+    
+    # Half-life calculation example
+    print_str("=== Practical Example: Half-Life ===")
+    println()
+    let initialAmount: f64 = 100.0
+    let halfLife: f64 = 5.0
+    let time: f64 = 10.0
+    
+    # N(t) = N₀ * exp(-ln(2) * t / t_half)
+    let ln2: f64 = log(2.0)
+    let decay: f64 = exp(-ln2 * time / halfLife)
+    let remaining: f64 = initialAmount * decay
+    
+    print_str("Initial: ")
+    print_f64(initialAmount)
+    print_str(" units")
+    println()
+    print_str("After ")
+    print_f64(time)
+    print_str(" years (half-life = ")
+    print_f64(halfLife)
+    print_str(" years):")
+    println()
+    print_str("Remaining: ")
+    print_f64(remaining)
+    print_str(" units")
+    println()
+    
+    return 0

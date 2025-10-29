@@ -1,0 +1,75 @@
+# Number Guessing Game
+# Demonstrates practical use of random(), seed_random(), hash_time(), exit()
+
+fn main() -> i32:
+    println()
+    print_str("=================================")
+    println()
+    print_str("    NUMBER GUESSING GAME")
+    println()
+    print_str("=================================")
+    println()
+    println()
+    
+    # Seed random with current time
+    let timestamp: i64 = hash_time()
+    seed_random(i64_to_i32(timestamp))
+    
+    # Generate secret number between 1 and 100
+    let secret: i32 = random_range(1, 100)
+    
+    print_str("I'm thinking of a number between 1 and 100...")
+    println()
+    print_str("Can you guess it?")
+    println()
+    println()
+    
+    let mut guesses: i32 = 0
+    let mut done: bool = false
+    
+    while !done:
+        print_str("Enter your guess: ")
+        let guess: i32 = read_i32()
+        guesses = guesses + 1
+        
+        if guess < 1:
+            print_str("Please guess between 1 and 100!")
+            println()
+        else:
+            if guess > 100:
+                print_str("Please guess between 1 and 100!")
+                println()
+            else:
+                if guess == secret:
+                    println()
+                    print_str("🎉 Congratulations! You found it!")
+                    println()
+                    print_str("The number was: ")
+                    print_i32(secret)
+                    println()
+                    print_str("You guessed it in ")
+                    print_i32(guesses)
+                    print_str(" tries!")
+                    println()
+                    println()
+                    
+                    # Rating based on number of guesses
+                    if guesses <= 5:
+                        print_str("Amazing! You're a master guesser!")
+                    else:
+                        if guesses <= 10:
+                            print_str("Great job!")
+                        else:
+                            print_str("You got there in the end!")
+                    println()
+                    
+                    done = true
+                else:
+                    if guess < secret:
+                        print_str("📈 Too low! Try higher.")
+                    else:
+                        print_str("📉 Too high! Try lower.")
+                    println()
+                    println()
+    
+    return 0

@@ -1,0 +1,126 @@
+# Hash Language Basics
+# This example demonstrates fundamental syntax and concepts
+
+# ============================================
+# Variables and Constants
+# ============================================
+
+# Immutable variable (default)
+let CONSTANT_VALUE: i32 = 100
+
+# Function demonstrating variable declaration and assignment
+fn variable_examples() -> i32:
+    # Immutable variable
+    let x: i32 = 10
+    
+    # Mutable variable
+    let mut counter: i32 = 0
+    counter = counter + 1
+    counter = counter + 1
+    
+    # Multiple types (all use i32 for literals)
+    let small: i32 = 127
+    let medium: i32 = 1000
+    let large: i32 = 1000000
+    
+    # More types
+    let another: i32 = 500
+    
+    # Floating point
+    let pi: f64 = 3.14159
+    let small_float: f64 = 0.001
+    
+    # Boolean
+    let is_true: bool = true
+    let is_false: bool = false
+    
+    return counter
+
+# ============================================
+# Arithmetic Operations
+# ============================================
+
+fn arithmetic_demo() -> i32:
+    let a: i32 = 10
+    let b: i32 = 5
+    
+    # Basic arithmetic
+    let sum: i32 = a + b          # 15
+    let difference: i32 = a - b   # 5
+    let product: i32 = a * b      # 50
+    let quotient: i32 = a / b     # 2
+    let remainder: i32 = a % b    # 0
+    
+    # Negative numbers
+    let negative: i32 = -42
+    
+    return sum
+
+# ============================================
+# Comparison and Logic
+# ============================================
+
+fn comparison_demo() -> bool:
+    let x: i32 = 10
+    let y: i32 = 20
+    
+    # Comparison operators
+    let equal: bool = x == y           # false
+    let not_equal: bool = x != y       # true
+    let less_than: bool = x < y        # true
+    let less_equal: bool = x <= y      # true
+    let greater_than: bool = x > y     # false
+    let greater_equal: bool = x >= y   # false
+    
+    # Boolean logic
+    let and_result: bool = true && false   # false
+    let or_result: bool = true || false    # true
+    let not_result: bool = !true           # false
+    
+    return and_result || or_result
+
+# ============================================
+# Bitwise Operations
+# ============================================
+
+fn bitwise_demo() -> i32:
+    let a: i32 = 12  # 1100 in binary
+    let b: i32 = 10  # 1010 in binary
+    
+    # Bitwise operations
+    let and_bits: i32 = a & b   # 1000 = 8
+    let or_bits: i32 = a | b    # 1110 = 14
+    let xor_bits: i32 = a ^ b   # 0110 = 6
+    let not_bits: i32 = ~a      # Bitwise NOT
+    
+    # Bit shifting
+    let left_shift: i32 = a << 2   # 110000 = 48
+    let right_shift: i32 = a >> 2  # 0011 = 3
+    
+    return xor_bits
+
+# ============================================
+# Main Function
+# ============================================
+
+fn main() -> i32:
+    # Demonstrate variable examples
+    let vars: i32 = variable_examples()
+    print_i32(vars)  # Should print 2
+    
+    # Demonstrate arithmetic
+    let math: i32 = arithmetic_demo()
+    print_i32(math)  # Should print 15
+    
+    # Demonstrate comparison
+    let logic: bool = comparison_demo()
+    print_bool(logic)  # Should print true
+    
+    # Demonstrate bitwise operations
+    let bits: i32 = bitwise_demo()
+    print_i32(bits)  # Should print 5
+    
+    println()  # Print a blank line
+    
+    return 0
+

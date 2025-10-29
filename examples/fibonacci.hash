@@ -1,0 +1,29 @@
+# Fibonacci Calculator
+# Demonstrates recursion, conditionals, and arithmetic
+
+fn fibonacci(n: i32) -> i32:
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Iterative version (more efficient)
+fn fibonacci_iter(n: i32) -> i32:
+    if n <= 1:
+        return n
+    
+    let mut a: i32 = 0
+    let mut b: i32 = 1
+    let mut i: i32 = 2
+    
+    while i <= n:
+        let mut temp: i32 = a + b
+        a = b
+        b = temp
+        i = i + 1
+    
+    return b
+
+fn main() -> i32:
+    let result: i32 = fibonacci_iter(10)
+    return result

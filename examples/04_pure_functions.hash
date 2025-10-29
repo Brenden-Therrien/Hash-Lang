@@ -1,0 +1,235 @@
+# Pure Functions Example
+# Demonstrates Hash's unique pure function feature
+
+# ============================================
+# What are Pure Functions?
+# ============================================
+# Pure functions:
+# - Always return the same output for the same input
+# - Have no side effects (no I/O, no global state modification)
+# - Are marked with the 'pure' keyword
+# - Can only call other pure functions
+# - Can access pure_local variables
+
+# ============================================
+# Pure_local Variables
+# ============================================
+# Pure_local variables:
+# - Are global constants
+# - Can ONLY be accessed by pure functions
+# - Provide behavior-aware access control
+# - Demonstrate Hash's novel feature
+
+let pure_local MAX_VALUE: i32 = 1000
+let pure_local MIN_VALUE: i32 = 0
+let pure_local PI: f64 = 3.14159
+
+# ============================================
+# Simple Pure Functions
+# ============================================
+
+# Basic arithmetic (pure)
+pure fn add_pure(a: i32, b: i32) -> i32:
+    return a + b
+
+pure fn subtract_pure(a: i32, b: i32) -> i32:
+    return a - b
+
+pure fn multiply_pure(a: i32, b: i32) -> i32:
+    return a * b
+
+pure fn divide_pure(a: i32, b: i32) -> i32:
+    if b == 0:
+        return 0
+    else:
+        return a / b
+
+# ============================================
+# Pure Functions with Complex Logic
+# ============================================
+
+# Absolute value (pure)
+pure fn abs_pure(x: i32) -> i32:
+    if x < 0:
+        return -x
+    else:
+        return x
+
+# Power function (pure, recursive)
+pure fn power_pure(base: i32, exp: i32) -> i32:
+    if exp == 0:
+        return 1
+    else:
+        if exp == 1:
+            return base
+        else:
+            return base * power_pure(base, exp - 1)
+
+# Factorial (pure, recursive)
+pure fn factorial_pure(n: i32) -> i32:
+    if n <= 1:
+        return 1
+    else:
+        return n * factorial_pure(n - 1)
+
+# GCD (pure, recursive)
+pure fn gcd_pure(a: i32, b: i32) -> i32:
+    if b == 0:
+        return a
+    else:
+        return gcd_pure(b, a % b)
+
+# ============================================
+# Pure Functions Accessing pure_local
+# ============================================
+
+# Access pure_local constant
+pure fn get_max_value() -> i32:
+    return MAX_VALUE
+
+pure fn get_min_value() -> i32:
+    return MIN_VALUE
+
+pure fn get_pi() -> f64:
+    return PI
+
+# Use pure_local in computation
+pure fn clamp_to_max(value: i32) -> i32:
+    if value > MAX_VALUE:
+        return MAX_VALUE
+    else:
+        return value
+
+pure fn clamp_to_min(value: i32) -> i32:
+    if value < MIN_VALUE:
+        return MIN_VALUE
+    else:
+        return value
+
+pure fn clamp_to_range(value: i32) -> i32:
+    if value < MIN_VALUE:
+        return MIN_VALUE
+    else:
+        if value > MAX_VALUE:
+            return MAX_VALUE
+        else:
+            return value
+
+# ============================================
+# Pure Functions Calling Other Pure Functions
+# ============================================
+
+# Chain pure function calls
+pure fn square_pure(x: i32) -> i32:
+    return multiply_pure(x, x)
+
+pure fn cube_pure(x: i32) -> i32:
+    let sq: i32 = square_pure(x)
+    return multiply_pure(sq, x)
+
+pure fn sum_of_squares_pure(a: i32, b: i32) -> i32:
+    let sq_a: i32 = square_pure(a)
+    let sq_b: i32 = square_pure(b)
+    return add_pure(sq_a, sq_b)
+
+# Distance formula helper (using pure functions)
+pure fn distance_squared(x1: i32, y1: i32, x2: i32, y2: i32) -> i32:
+    let dx: i32 = subtract_pure(x2, x1)
+    let dy: i32 = subtract_pure(y2, y1)
+    return sum_of_squares_pure(dx, dy)
+
+# ============================================
+# Mathematical Pure Functions
+# ============================================
+
+# Check if even (pure)
+pure fn is_even_pure(n: i32) -> bool:
+    return n % 2 == 0
+
+# Check if odd (pure)
+pure fn is_odd_pure(n: i32) -> bool:
+    return n % 2 == 1
+
+# Check if divisible (pure)
+pure fn is_divisible(n: i32, divisor: i32) -> bool:
+    if divisor == 0:
+        return false
+    else:
+        return n % divisor == 0
+
+# Minimum (pure)
+pure fn min_pure(a: i32, b: i32) -> i32:
+    if a < b:
+        return a
+    else:
+        return b
+
+# Maximum (pure)
+pure fn max_pure(a: i32, b: i32) -> i32:
+    if a > b:
+        return a
+    else:
+        return b
+
+# ============================================
+# Regular (Impure) Functions
+# ============================================
+
+# Regular functions can call pure functions
+fn use_pure_functions() -> i32:
+    let sum: i32 = add_pure(10, 20)
+    let product: i32 = multiply_pure(5, 6)
+    let squared: i32 = square_pure(7)
+    return sum + product + squared
+
+# Regular functions work with mutable state
+fn counter_demo() -> i32:
+    let mut count: i32 = 0
+    count = count + 1
+    count = count + 1
+    count = count + 1
+    return count
+
+# IMPORTANT: Regular functions CANNOT access pure_local variables
+# This would cause an error if uncommented:
+# fn try_access_pure_local() -> i32:
+#     return MAX_VALUE  # ERROR: non-pure function cannot access pure_local
+
+# ============================================
+# Demonstrating Purity Constraints
+# ============================================
+
+# This is valid: pure function calling pure function
+pure fn valid_pure_chain(x: i32) -> i32:
+    let doubled: i32 = add_pure(x, x)
+    let squared: i32 = square_pure(doubled)
+    return squared
+
+# This would cause an error if uncommented:
+# pure fn invalid_pure() -> i32:
+#     let count: i32 = counter_demo()  # ERROR: pure cannot call impure
+#     return count
+
+# ============================================
+# Main Function
+# ============================================
+
+fn main() -> i32:
+    # Test pure functions
+    let sum: i32 = add_pure(15, 25)
+    let product: i32 = multiply_pure(7, 8)
+    let pow: i32 = power_pure(2, 8)
+    let fact: i32 = factorial_pure(5)
+    
+    # Test pure_local access
+    let max: i32 = get_max_value()
+    let clamped: i32 = clamp_to_range(1500)
+    
+    # Test pure function chains
+    let sq: i32 = square_pure(10)
+    let cube: i32 = cube_pure(5)
+    
+    # Regular functions can use pure functions
+    let mixed: i32 = use_pure_functions()
+    
+    return 0

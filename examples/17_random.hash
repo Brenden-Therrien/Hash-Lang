@@ -1,0 +1,77 @@
+# System Functions - Random Number Example
+# Demonstrates: random(), seed_random(), random_range()
+
+fn main() -> i32:
+    println()
+    print_str("=== Random Number Functions ===")
+    println()
+    println()
+    
+    # Seed the random number generator with current time
+    let timestamp: i64 = hash_time()
+    let seed: i32 = i64_to_i32(timestamp)
+    seed_random(seed)
+    
+    print_str("Random seed set to: ")
+    print_i32(seed)
+    println()
+    println()
+    
+    # Generate random floats between 0.0 and 1.0
+    print_str("Random floats (0.0 to 1.0):")
+    println()
+    let mut i: i32 = 0
+    while i < 5:
+        print_str("  ")
+        print_f64(random())
+        println()
+        i = i + 1
+    println()
+    
+    # Generate random integers in a range
+    print_str("Random integers (1 to 100):")
+    println()
+    let mut j: i32 = 0
+    while j < 10:
+        print_str("  ")
+        print_i32(random_range(1, 100))
+        println()
+        j = j + 1
+    println()
+    
+    # Generate random integers in different range
+    print_str("Random integers (-50 to 50):")
+    println()
+    let mut k: i32 = 0
+    while k < 5:
+        print_str("  ")
+        print_i32(random_range(-50, 50))
+        println()
+        k = k + 1
+    println()
+    
+    # Simulate dice rolls
+    print_str("=== Dice Rolls (1-6) ===")
+    println()
+    let mut rolls: i32 = 0
+    let mut sum: i32 = 0
+    while rolls < 10:
+        let roll: i32 = random_range(1, 6)
+        print_str("Roll ")
+        print_i32(rolls + 1)
+        print_str(": ")
+        print_i32(roll)
+        println()
+        sum = sum + roll
+        rolls = rolls + 1
+    
+    println()
+    print_str("Total: ")
+    print_i32(sum)
+    println()
+    print_str("Average: ")
+    let avg: f64 = float(sum) / float(rolls)
+    print_f64(avg)
+    println()
+    
+    return 0

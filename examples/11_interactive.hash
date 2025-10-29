@@ -1,0 +1,28 @@
+# Simple input/output test
+
+fn main() -> i32:
+    print_str("Calculator Demo")
+    println()
+    print_str("Enter a number: ")
+    let x: i32 = read_i32()
+    
+    print_str("You entered: ")
+    print_i32(x)
+    
+    print_str("Doubled: ")
+    print_i32(x * 2)
+    
+    print_str("Squared: ")
+    print_i32(x * x)
+    
+    println()
+    print_str("Enter a decimal: ")
+    let y: f64 = read_f64()
+    
+    print_str("You entered: ")
+    print_f64(y)
+    
+    print_str("Square root: ")
+    print_f64(sqrt(y))
+    
+    return 0

@@ -1,0 +1,377 @@
+# Example 13: Edge Cases and Special Values
+# Demonstrates handling of mathematical edge cases, NaN, infinity, and special values
+
+fn test_special_floats():
+    print_str("=== Special Float Values ===")
+    println()
+    
+    # Negative square root (NaN)
+    print_str("sqrt(-1.0) = ")
+    let nan_result: f64 = sqrt(-1.0)
+    print_f64(nan_result)  # Will print "nan"
+    println()
+    
+    # Zero to the zero power (typically 1)
+    print_str("pow(0.0, 0.0) = ")
+    let zero_pow: f64 = pow(0.0, 0.0)
+    print_f64(zero_pow)
+    println()
+    
+    # Very large power (might be infinity)
+    print_str("pow(10.0, 1000.0) = ")
+    let inf_result: f64 = pow(10.0, 1000.0)
+    print_f64(inf_result)  # Will print "inf"
+    println()
+    
+    # Very small positive number
+    print_str("pow(10.0, -1000.0) = ")
+    let tiny: f64 = pow(10.0, -1000.0)
+    print_f64(tiny)
+    println()
+    
+    println()
+
+fn test_rounding_edge_cases():
+    print_str("=== Rounding Edge Cases ===")
+    println()
+    
+    # Rounding zero
+    print_str("floor(0.0) = ")
+    print_f64(floor(0.0))
+    println()
+    
+    print_str("ceil(0.0) = ")
+    print_f64(ceil(0.0))
+    println()
+    
+    print_str("round(0.0) = ")
+    print_f64(round(0.0))
+    println()
+    
+    # Rounding at .5
+    print_str("round(0.5) = ")
+    print_f64(round(0.5))
+    println()
+    
+    print_str("round(1.5) = ")
+    print_f64(round(1.5))
+    println()
+    
+    print_str("round(2.5) = ")
+    print_f64(round(2.5))
+    println()
+    
+    # Negative rounding
+    print_str("floor(-2.3) = ")
+    print_f64(floor(-2.3))
+    println()
+    
+    print_str("ceil(-2.3) = ")
+    print_f64(ceil(-2.3))
+    println()
+    
+    print_str("round(-2.5) = ")
+    print_f64(round(-2.5))
+    println()
+    
+    println()
+
+fn test_logarithm_edge_cases():
+    print_str("=== Logarithm Edge Cases ===")
+    println()
+    
+    # Log of 1 (should be 0)
+    print_str("log(1.0) = ")
+    print_f64(log(1.0))
+    println()
+    
+    # Log of e (should be ~1)
+    print_str("log(2.71828) = ")
+    print_f64(log(2.71828))
+    println()
+    
+    # Log of negative (NaN)
+    print_str("log(-1.0) = ")
+    print_f64(log(-1.0))
+    println()
+    
+    # Log of zero (negative infinity)
+    print_str("log(0.0) = ")
+    print_f64(log(0.0))
+    println()
+    
+    # log2 and log10 edge cases
+    print_str("log2(1.0) = ")
+    print_f64(log2(1.0))
+    println()
+    
+    print_str("log10(1.0) = ")
+    print_f64(log10(1.0))
+    println()
+    
+    println()
+
+fn test_trig_edge_cases():
+    print_str("=== Trigonometry Edge Cases ===")
+    println()
+    
+    # Trig of zero
+    print_str("sin(0.0) = ")
+    print_f64(sin(0.0))
+    println()
+    
+    print_str("cos(0.0) = ")
+    print_f64(cos(0.0))
+    println()
+    
+    print_str("tan(0.0) = ")
+    print_f64(tan(0.0))
+    println()
+    
+    # Arc trig edge cases
+    print_str("asin(0.0) = ")
+    print_f64(asin(0.0))
+    println()
+    
+    print_str("acos(1.0) = ")
+    print_f64(acos(1.0))
+    println()
+    
+    print_str("atan(0.0) = ")
+    print_f64(atan(0.0))
+    println()
+    
+    # Arc trig out of range (should return NaN)
+    print_str("asin(2.0) = ")
+    print_f64(asin(2.0))
+    println()
+    
+    print_str("acos(-2.0) = ")
+    print_f64(acos(-2.0))
+    println()
+    
+    println()
+
+fn test_string_edge_cases():
+    print_str("=== String Edge Cases ===")
+    println()
+    
+    # Empty string
+    let empty: str = ""
+    print_str("len(\"\") = ")
+    print_i32(len(empty))
+    println()
+    
+    # Empty string operations
+    let upper_empty: str = upper(empty)
+    print_str("upper(\"\") = \"")
+    print_str(upper_empty)
+    print_str("\"")
+    println()
+    
+    let lower_empty: str = lower(empty)
+    print_str("lower(\"\") = \"")
+    print_str(lower_empty)
+    print_str("\"")
+    println()
+    
+    # Concatenating with empty
+    let hello: str = "Hello"
+    let concat1: str = str_concat(empty, hello)
+    print_str("\"\" + \"Hello\" = \"")
+    print_str(concat1)
+    print_str("\"")
+    println()
+    
+    let concat2: str = str_concat(hello, empty)
+    print_str("\"Hello\" + \"\" = \"")
+    print_str(concat2)
+    print_str("\"")
+    println()
+    
+    # String equality with empty
+    if str_eq(empty, empty):
+        print_str("Empty strings are equal: true")
+    else:
+        print_str("Empty strings are equal: false")
+    
+    println()
+    
+    # Single character strings
+    let single: str = "A"
+    print_str("len(\"A\") = ")
+    print_i32(len(single))
+    println()
+    
+    # Whitespace strings
+    let spaces: str = "   "
+    print_str("len(\"   \") = ")
+    print_i32(len(spaces))
+    println()
+    
+    let upper_spaces: str = upper(spaces)
+    print_str("upper(\"   \") = \"")
+    print_str(upper_spaces)
+    print_str("\"")
+    println()
+    
+    println()
+
+fn test_file_io_edge_cases():
+    print_str("=== File I/O Edge Cases ===")
+    println()
+    
+    # Reading non-existent file
+    let missing: str = file_read("this_does_not_exist.txt")
+    print_str("Reading non-existent file returns: ")
+    print_i32(len(missing))
+    print_str(" bytes")
+    println()
+    
+    # Writing empty string
+    let empty_write: bool = file_write("empty_test.txt", "")
+    print_str("Writing empty string: ")
+    print_bool(empty_write)
+    println()
+    
+    if empty_write:
+        # Check if it exists
+        if file_exists("empty_test.txt"):
+            print_str("Empty file exists: true")
+            println()
+            
+            # Read it back
+            let empty_content: str = file_read("empty_test.txt")
+            print_str("Empty file length: ")
+            print_i32(len(empty_content))
+            println()
+            
+            # Delete it
+            file_delete("empty_test.txt")
+            print_str("Cleaned up empty test file")
+            println()
+    
+    # Checking non-existent file
+    let exists: bool = file_exists("nonexistent_file.xyz")
+    print_str("Non-existent file exists: ")
+    print_bool(exists)
+    println()
+    
+    # Deleting non-existent file
+    let deleted: bool = file_delete("nonexistent_file.xyz")
+    print_str("Deleting non-existent file: ")
+    print_bool(deleted)
+    println()
+    
+    # Writing and reading special content
+    let newlines: str = "\n\n\n"
+    let nl_write: bool = file_write("newline_test.txt", newlines)
+    
+    if nl_write:
+        let nl_content: str = file_read("newline_test.txt")
+        print_str("Newline file length: ")
+        print_i32(len(nl_content))
+        println()
+        file_delete("newline_test.txt")
+    
+    println()
+
+fn test_integer_edge_cases():
+    print_str("=== Integer Edge Cases ===")
+    println()
+    
+    # Maximum and minimum values (within i32 range)
+    let max_safe: i32 = 2147483647
+    print_str("Max safe i32: ")
+    print_i32(max_safe)
+    println()
+    
+    let min_safe: i32 = -2147483647
+    print_str("Min safe i32: ")
+    print_i32(min_safe)
+    println()
+    
+    # Zero operations
+    print_str("0 * 1000000 = ")
+    print_i32(0 * 1000000)
+    println()
+    
+    print_str("abs(0) = ")
+    print_i32(abs(0))
+    println()
+    
+    print_str("min(0, 0) = ")
+    print_i32(min(0, 0))
+    println()
+    
+    print_str("max(0, 0) = ")
+    print_i32(max(0, 0))
+    println()
+    
+    # Negative abs
+    print_str("abs(-42) = ")
+    print_i32(abs(-42))
+    println()
+    
+    println()
+
+fn test_conversion_edge_cases():
+    print_str("=== Type Conversion Edge Cases ===")
+    println()
+    
+    # Converting zero
+    print_str("float(0) = ")
+    print_f64(float(0))
+    println()
+    
+    print_str("int(0.0) = ")
+    print_i32(int(0.0))
+    println()
+    
+    # Converting negative
+    print_str("float(-100) = ")
+    print_f64(float(-100))
+    println()
+    
+    print_str("int(-99.9) = ")
+    print_i32(int(-99.9))
+    println()
+    
+    # Converting large float to int (truncation)
+    print_str("int(1000000.999) = ")
+    print_i32(int(1000000.999))
+    println()
+    
+    # Converting very small float
+    print_str("int(0.0001) = ")
+    print_i32(int(0.0001))
+    println()
+    
+    println()
+
+fn main() -> i32:
+    print_str("╔═══════════════════════════════════════╗")
+    println()
+    print_str("║  Hash Language - Edge Cases & Tests  ║")
+    println()
+    print_str("╚═══════════════════════════════════════╝")
+    println()
+    println()
+    
+    test_special_floats()
+    test_rounding_edge_cases()
+    test_logarithm_edge_cases()
+    test_trig_edge_cases()
+    test_integer_edge_cases()
+    test_conversion_edge_cases()
+    test_string_edge_cases()
+    test_file_io_edge_cases()
+    
+    print_str("╔═══════════════════════════════════════╗")
+    println()
+    print_str("║  All edge cases handled gracefully!  ║")
+    println()
+    print_str("╚═══════════════════════════════════════╝")
+    println()
+    
+    return 0

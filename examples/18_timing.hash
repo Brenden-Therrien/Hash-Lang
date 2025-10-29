@@ -1,0 +1,68 @@
+# System Functions - Time and Clock Example
+# Demonstrates: hash_time(), hash_clock(), exit()
+
+fn fibonacci(n: i32) -> i32:
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+fn main() -> i32:
+    println()
+    print_str("=== Time and Clock Functions ===")
+    println()
+    println()
+    
+    # Get current Unix timestamp
+    let timestamp: i64 = hash_time()
+    print_str("Current Unix timestamp: ")
+    print_i64(timestamp)
+    println()
+    println()
+    
+    # Measure execution time of some computation
+    print_str("Computing fibonacci(30)...")
+    println()
+    
+    let startTime: f64 = hash_clock()
+    let result: i32 = fibonacci(30)
+    let endTime: f64 = hash_clock()
+    
+    let elapsed: f64 = endTime - startTime
+    
+    print_str("Result: ")
+    print_i32(result)
+    println()
+    print_str("Time taken: ")
+    print_f64(elapsed)
+    print_str(" seconds")
+    println()
+    println()
+    
+    # Another benchmark
+    print_str("Computing fibonacci(35)...")
+    println()
+    
+    let start2: f64 = hash_clock()
+    let result2: i32 = fibonacci(35)
+    let end2: f64 = hash_clock()
+    
+    let elapsed2: f64 = end2 - start2
+    
+    print_str("Result: ")
+    print_i32(result2)
+    println()
+    print_str("Time taken: ")
+    print_f64(elapsed2)
+    print_str(" seconds")
+    println()
+    println()
+    
+    # Compare times
+    let ratio: f64 = elapsed2 / elapsed
+    print_str("fibonacci(35) took ")
+    print_f64(ratio)
+    print_str("x longer than fibonacci(30)")
+    println()
+    
+    return 0

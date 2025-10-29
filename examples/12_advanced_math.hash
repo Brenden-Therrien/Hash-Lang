@@ -1,0 +1,88 @@
+# Advanced Math Functions Example
+# Demonstrates: pow, floor, ceil, round
+
+fn main() -> i32:
+    println()
+    print_str("=== Advanced Math Functions ===")
+    println()
+    println()
+    
+    # Power function
+    print_str("Power: 2^8 = ")
+    let power: f64 = pow(2.0, 8.0)
+    print_f64(power)
+    println()
+    
+    print_str("Power: 3^4 = ")
+    print_f64(pow(3.0, 4.0))
+    println()
+    
+    print_str("Power: 10^3 = ")
+    print_f64(pow(10.0, 3.0))
+    println()
+    
+    println()
+    
+    # Floor, Ceil, Round
+    let value: f64 = 3.7
+    print_str("Original value: ")
+    print_f64(value)
+    println()
+    
+    print_str("floor(3.7) = ")
+    print_f64(floor(value))
+    println()
+    
+    print_str("ceil(3.7) = ")
+    print_f64(ceil(value))
+    println()
+    
+    print_str("round(3.7) = ")
+    print_f64(round(value))
+    println()
+    
+    println()
+    
+    let negValue: f64 = -2.3
+    print_str("Original value: ")
+    print_f64(negValue)
+    println()
+    
+    print_str("floor(-2.3) = ")
+    print_f64(floor(negValue))
+    println()
+    
+    print_str("ceil(-2.3) = ")
+    print_f64(ceil(negValue))
+    println()
+    
+    print_str("round(-2.3) = ")
+    print_f64(round(negValue))
+    println()
+    
+    println()
+    
+    # Practical calculations
+    print_str("=== Practical Examples ===")
+    println()
+    
+    # Circle area: π * r^2 (using 3.14159)
+    let radius: f64 = 5.0
+    let pi: f64 = 3.14159
+    let area: f64 = pi * pow(radius, 2.0)
+    print_str("Circle area (r=5): ")
+    print_f64(area)
+    println()
+    
+    # Compound interest: P * (1 + r)^t
+    let principal: f64 = 1000.0
+    let rate: f64 = 0.05
+    let time: f64 = 10.0
+    let amount: f64 = principal * pow(1.0 + rate, time)
+    print_str("Compound interest (P=1000, r=0.05, t=10): ")
+    print_f64(round(amount))
+    println()
+    
+    println()
+    
+    return 0

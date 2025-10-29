@@ -1,0 +1,33 @@
+# Pure Functions Example
+# Demonstrates behavior-aware scope and access control
+
+# A pure function - cannot have side effects
+pure fn calculate_sum(a: i32, b: i32) -> i32:
+    return a + b
+
+# Another pure function calling a pure function (allowed)
+pure fn calculate_average(x: i32, y: i32) -> i32:
+    let sum: i32 = calculate_sum(x, y)
+    return sum / 2
+
+# Pure-local variable - only accessible by pure functions
+let pure_local counter: i32 = 0
+
+# Pure function can read pure_local
+pure fn get_counter() -> i32:
+    return counter
+
+# Regular function with side effects
+fn increment_global() -> void:
+    let mut temp: i32 = 10
+    temp = temp + 1
+    return
+
+# Main function
+fn main() -> i32:
+    let result: i32 = calculate_average(10, 20)
+    let count: i32 = get_counter()
+    
+    increment_global()
+    
+    return 0

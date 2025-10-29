@@ -1,0 +1,54 @@
+# Build directories
+build/
+cmake-build-*/
+out/
+
+# Object files
+*.o
+*.obj
+*.lo
+*.slo
+
+# Compiled executables
+*.exe
+*.out
+hashc
+a.out
+
+# LLVM IR files
+*.ll
+*.bc
+
+# Visual Studio
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.user
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing
+test_output/
+*.test
+
+# Logs
+*.log

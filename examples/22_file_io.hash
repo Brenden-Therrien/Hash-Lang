@@ -1,0 +1,184 @@
+# Example 22: File I/O Operations
+# Demonstrates reading, writing, checking, and deleting files
+
+fn example_basic_write_read():
+    # Write a simple message to a file
+    let message: str = "Hello from Hash!"
+    let success: bool = file_write("test.txt", message)
+    
+    if success:
+        print_str("File written successfully")
+        println()
+        
+        # Read it back
+        let content: str = file_read("test.txt")
+        print_str("File content: ")
+        print_str(content)
+        println()
+    else:
+        print_str("Failed to write file")
+        println()
+
+fn example_check_before_read():
+    # Always good practice to check if file exists before reading
+    let filename: str = "test.txt"
+    
+    if file_exists(filename):
+        print_str("File exists, reading...")
+        println()
+        let content: str = file_read(filename)
+        print_str(content)
+        println()
+    else:
+        print_str("File does not exist")
+        println()
+
+fn example_config_file():
+    # Write a config file
+    let config: str = str_concat("app_name=HashLang", "\n")
+    let config2: str = str_concat(config, "version=0.3.0")
+    let config3: str = str_concat(config2, "\n")
+    let config4: str = str_concat(config3, "debug=true")
+    
+    let written: bool = file_write("config.txt", config4)
+    
+    if written:
+        print_str("Config file created")
+        println()
+        
+        # Read and display it
+        let cfg: str = file_read("config.txt")
+        print_str("Configuration:")
+        println()
+        print_str(cfg)
+        println()
+
+fn example_log_writer():
+    # Simulate writing log entries
+    let log1: str = "[INFO] Application started\n"
+    let log2: str = str_concat(log1, "[INFO] Loading configuration\n")
+    let log3: str = str_concat(log2, "[INFO] System ready")
+    
+    let success: bool = file_write("app.log", log3)
+    
+    if success:
+        print_str("Log file created")
+        println()
+        
+        # Verify the log
+        if file_exists("app.log"):
+            let logs: str = file_read("app.log")
+            print_str("Log contents:")
+            println()
+            print_str(logs)
+            println()
+
+fn example_data_persistence():
+    # Save some data to a file
+    let data: str = "Important result: 42"
+    
+    file_write("result.txt", data)
+    print_str("Data saved to result.txt")
+    println()
+    
+    # Read it back and verify
+    let saved: str = file_read("result.txt")
+    print_str("Retrieved data: ")
+    print_str(saved)
+    println()
+
+fn example_cleanup():
+    # Clean up test files
+    print_str("Cleaning up test files...")
+    println()
+    
+    if file_exists("test.txt"):
+        let deleted1: bool = file_delete("test.txt")
+        if deleted1:
+            print_str("✓ Deleted test.txt")
+            println()
+    
+    if file_exists("config.txt"):
+        let deleted2: bool = file_delete("config.txt")
+        if deleted2:
+            print_str("✓ Deleted config.txt")
+            println()
+    
+    if file_exists("app.log"):
+        let deleted3: bool = file_delete("app.log")
+        if deleted3:
+            print_str("✓ Deleted app.log")
+            println()
+    
+    if file_exists("result.txt"):
+        let deleted4: bool = file_delete("result.txt")
+        if deleted4:
+            print_str("✓ Deleted result.txt")
+            println()
+    
+    print_str("Cleanup complete!")
+    println()
+
+fn example_error_handling():
+    # Try to read a file that doesn't exist
+    let content: str = file_read("nonexistent.txt")
+    let length: i32 = len(content)
+    
+    if length == 0:
+        print_str("File read failed (empty string returned)")
+        println()
+    else:
+        print_str("File content:")
+        println()
+        print_str(content)
+        println()
+    
+    # Try to delete a file that doesn't exist
+    let deleted: bool = file_delete("nonexistent.txt")
+    if deleted:
+        print_str("File deleted")
+        println()
+    else:
+        print_str("Delete failed (file doesn't exist)")
+        println()
+
+fn main() -> i32:
+    print_str("=== Hash File I/O Examples ===")
+    println()
+    println()
+    
+    print_str("--- Basic Write & Read ---")
+    println()
+    example_basic_write_read()
+    println()
+    
+    print_str("--- Check Before Read ---")
+    println()
+    example_check_before_read()
+    println()
+    
+    print_str("--- Config File ---")
+    println()
+    example_config_file()
+    println()
+    
+    print_str("--- Log Writer ---")
+    println()
+    example_log_writer()
+    println()
+    
+    print_str("--- Data Persistence ---")
+    println()
+    example_data_persistence()
+    println()
+    
+    print_str("--- Error Handling ---")
+    println()
+    example_error_handling()
+    println()
+    
+    print_str("--- Cleanup ---")
+    println()
+    example_cleanup()
+    
+    return 0

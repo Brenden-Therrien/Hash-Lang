@@ -1,0 +1,400 @@
+# Example 23: Comprehensive Error Handling
+# Demonstrates safe practices for all Hash features including strings and file I/O
+
+# ===== Math Error Handling =====
+
+fn safe_divide(a: i32, b: i32) -> i32:
+    if b == 0:
+        print_str("Error: Division by zero!")
+        println()
+        return 0
+    else:
+        return a / b
+
+fn safe_sqrt(x: f64) -> f64:
+    if x < 0.0:
+        print_str("Warning: sqrt of negative number, returning NaN")
+        println()
+    
+    return sqrt(x)
+
+fn safe_log(x: f64) -> f64:
+    if x <= 0.0:
+        print_str("Warning: log of non-positive number, returning NaN")
+        println()
+    
+    return log(x)
+
+fn safe_asin(x: f64) -> f64:
+    if x < -1.0:
+        print_str("Warning: asin out of range (< -1), clamping")
+        println()
+        return asin(-1.0)
+    else:
+        if x > 1.0:
+            print_str("Warning: asin out of range (> 1), clamping")
+            println()
+            return asin(1.0)
+        else:
+            return asin(x)
+
+# ===== String Error Handling =====
+
+fn safe_string_operation():
+    print_str("=== String Safety ===")
+    println()
+    
+    # Always check string lengths before operations
+    let empty: str = ""
+    let length: i32 = len(empty)
+    
+    if length == 0:
+        print_str("String is empty!")
+        println()
+    else:
+        print_str("String has content")
+        println()
+    
+    # Safe string comparison
+    let str1: str = "Hello"
+    let str2: str = "World"
+    
+    if str_eq(str1, str2):
+        print_str("Strings are equal")
+    else:
+        print_str("Strings are different")
+    
+    println()
+    println()
+
+# ===== File I/O Error Handling =====
+
+fn safe_file_read(filename: str) -> str:
+    # Always check if file exists before reading
+    if file_exists(filename):
+        let content: str = file_read(filename)
+        let content_len: i32 = len(content)
+        
+        # Double-check the content isn't empty
+        if content_len == 0:
+            print_str("Warning: File exists but is empty: ")
+            print_str(filename)
+            println()
+            return ""
+        else:
+            print_str("Successfully read file: ")
+            print_str(filename)
+            print_str(" (")
+            print_i32(content_len)
+            print_str(" bytes)")
+            println()
+            return content
+    else:
+        print_str("Error: File not found: ")
+        print_str(filename)
+        println()
+        return ""
+
+fn safe_file_write(filename: str, content: str) -> bool:
+    # Check if content is not empty
+    let content_len: i32 = len(content)
+    
+    if content_len == 0:
+        print_str("Warning: Attempting to write empty content to ")
+        print_str(filename)
+        println()
+    
+    let success: bool = file_write(filename, content)
+    
+    if success:
+        print_str("Successfully wrote to ")
+        print_str(filename)
+        println()
+        return true
+    else:
+        print_str("Error: Failed to write to ")
+        print_str(filename)
+        println()
+        return false
+
+fn safe_file_delete(filename: str) -> bool:
+    # Always check if file exists before trying to delete
+    if file_exists(filename):
+        let deleted: bool = file_delete(filename)
+        
+        if deleted:
+            print_str("Successfully deleted ")
+            print_str(filename)
+            println()
+            return true
+        else:
+            print_str("Error: Failed to delete ")
+            print_str(filename)
+            print_str(" (may be in use)")
+            println()
+            return false
+    else:
+        print_str("Warning: Cannot delete non-existent file: ")
+        print_str(filename)
+        println()
+        return false
+
+# ===== Input Validation =====
+
+fn validate_positive_input(prompt: str) -> i32:
+    print_str(prompt)
+    let value: i32 = read_i32()
+    
+    if value <= 0:
+        print_str("Error: Value must be positive! Using default value 1")
+        println()
+        return 1
+    
+    return value
+
+fn validate_range_input(prompt: str, min: i32, max: i32) -> i32:
+    print_str(prompt)
+    let value: i32 = read_i32()
+    
+    if value < min:
+        print_str("Error: Value below minimum (")
+        print_i32(min)
+        print_str("), clamping")
+        println()
+        return min
+    else:
+        if value > max:
+            print_str("Error: Value above maximum (")
+            print_i32(max)
+            print_str("), clamping")
+            println()
+            return max
+        else:
+            return value
+
+# ===== Combined Error Handling Examples =====
+
+fn example_math_safety():
+    print_str("=== Math Safety ===")
+    println()
+    
+    # Safe division
+    let result1: i32 = safe_divide(10, 2)
+    print_str("10 / 2 = ")
+    print_i32(result1)
+    println()
+    
+    let result2: i32 = safe_divide(10, 0)
+    print_str("10 / 0 = ")
+    print_i32(result2)
+    println()
+    
+    # Safe sqrt
+    let sqrt1: f64 = safe_sqrt(16.0)
+    print_str("sqrt(16.0) = ")
+    print_f64(sqrt1)
+    println()
+    
+    let sqrt2: f64 = safe_sqrt(-4.0)
+    print_str("sqrt(-4.0) = ")
+    print_f64(sqrt2)
+    println()
+    
+    # Safe log
+    let log1: f64 = safe_log(2.71828)
+    print_str("log(e) = ")
+    print_f64(log1)
+    println()
+    
+    let log2: f64 = safe_log(-1.0)
+    print_str("log(-1.0) = ")
+    print_f64(log2)
+    println()
+    
+    println()
+
+fn example_file_safety():
+    print_str("=== File I/O Safety ===")
+    println()
+    
+    # Try to read non-existent file
+    let content1: str = safe_file_read("nonexistent.txt")
+    
+    # Write a test file
+    let test_data: str = "This is test data"
+    let write_ok: bool = safe_file_write("test_error.txt", test_data)
+    
+    if write_ok:
+        # Read it back
+        let content2: str = safe_file_read("test_error.txt")
+        
+        if len(content2) > 0:
+            print_str("Read back: ")
+            print_str(content2)
+            println()
+        
+        # Clean up
+        safe_file_delete("test_error.txt")
+    
+    # Try to delete non-existent file
+    safe_file_delete("nonexistent.txt")
+    
+    println()
+
+fn example_string_safety():
+    print_str("=== String Safety ===")
+    println()
+    
+    # Check empty strings
+    let empty: str = ""
+    let not_empty: str = "Hello"
+    
+    print_str("Empty string length: ")
+    print_i32(len(empty))
+    println()
+    
+    print_str("Non-empty string length: ")
+    print_i32(len(not_empty))
+    println()
+    
+    # Safe concatenation
+    let part1: str = "Hello"
+    let part2: str = " "
+    let part3: str = "World"
+    
+    let temp: str = str_concat(part1, part2)
+    let result: str = str_concat(temp, part3)
+    
+    print_str("Concatenated: ")
+    print_str(result)
+    println()
+    
+    # Case conversion safety (works on any string)
+    let upper_empty: str = upper(empty)
+    print_str("Upper of empty: '")
+    print_str(upper_empty)
+    print_str("'")
+    println()
+    
+    let upper_text: str = upper("hello")
+    print_str("Upper of 'hello': ")
+    print_str(upper_text)
+    println()
+    
+    println()
+
+fn example_robust_config_system():
+    print_str("=== Robust Config File System ===")
+    println()
+    
+    let config_file: str = "app_config.txt"
+    
+    # Build config with error checking
+    let line1: str = "setting1=enabled\n"
+    let line2: str = "setting2=disabled\n"
+    let line3: str = "version=1.0"
+    
+    let temp1: str = str_concat(line1, line2)
+    let config_content: str = str_concat(temp1, line3)
+    
+    # Verify content before writing
+    let config_len: i32 = len(config_content)
+    print_str("Config size: ")
+    print_i32(config_len)
+    print_str(" bytes")
+    println()
+    
+    if config_len > 0:
+        # Write with error checking
+        if safe_file_write(config_file, config_content):
+            # Read back with error checking
+            let loaded: str = safe_file_read(config_file)
+            
+            if len(loaded) > 0:
+                print_str("Loaded config:")
+                println()
+                print_str(loaded)
+                println()
+                
+                # Verify content matches
+                if str_eq(loaded, config_content):
+                    print_str("✓ Config integrity verified!")
+                    println()
+                else:
+                    print_str("✗ Config mismatch detected!")
+                    println()
+            
+            # Cleanup
+            safe_file_delete(config_file)
+        else:
+            print_str("Failed to create config file")
+            println()
+    
+    println()
+
+fn example_error_recovery():
+    print_str("=== Error Recovery Patterns ===")
+    println()
+    
+    # Pattern 1: Retry with defaults
+    let data_file: str = "data.txt"
+    let content: str = safe_file_read(data_file)
+    
+    if len(content) == 0:
+        print_str("Using default data...")
+        println()
+        let default_data: str = "Default configuration"
+        safe_file_write(data_file, default_data)
+        # Now read the default
+        let new_content: str = safe_file_read(data_file)
+        print_str("Loaded: ")
+        print_str(new_content)
+        println()
+        safe_file_delete(data_file)
+    
+    # Pattern 2: Graceful degradation
+    let optional_file: str = "optional.txt"
+    
+    if file_exists(optional_file):
+        print_str("Loading optional features...")
+        println()
+        let opt_content: str = safe_file_read(optional_file)
+        print_str(opt_content)
+        println()
+    else:
+        print_str("Optional file not found, continuing with basic features")
+        println()
+    
+    # Pattern 3: Validation and correction
+    let user_input: str = "  MESSY INPUT  "
+    let normalized: str = upper(user_input)
+    print_str("Normalized input: '")
+    print_str(normalized)
+    print_str("'")
+    println()
+    
+    println()
+
+fn main() -> i32:
+    print_str("╔══════════════════════════════════════════════╗")
+    println()
+    print_str("║  Hash Language - Comprehensive Error Demo   ║")
+    println()
+    print_str("╚══════════════════════════════════════════════╝")
+    println()
+    println()
+    
+    example_math_safety()
+    example_string_safety()
+    example_file_safety()
+    example_robust_config_system()
+    example_error_recovery()
+    
+    print_str("╔══════════════════════════════════════════════╗")
+    println()
+    print_str("║  All error handling patterns demonstrated!  ║")
+    println()
+    print_str("╚══════════════════════════════════════════════╝")
+    println()
+    
+    return 0

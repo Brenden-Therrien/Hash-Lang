@@ -1,0 +1,331 @@
+# Algorithms Example
+# Classic algorithms implemented in Hash
+
+# ============================================
+# Searching Algorithms
+# ============================================
+
+# Linear search - find element in range
+fn linear_search(target: i32, size: i32) -> i32:
+    let mut i: i32 = 0
+    while i < size:
+        if i == target:
+            return i
+        else:
+            i = i + 1
+    return -1
+
+# Binary search simulation (for sorted range 0..n-1)
+fn binary_search(target: i32, size: i32) -> i32:
+    let mut low: i32 = 0
+    let mut high: i32 = size - 1
+    
+    while low <= high:
+        let mid: i32 = low + (high - low) / 2
+        
+        if mid == target:
+            return mid
+        else:
+            if mid < target:
+                low = mid + 1
+            else:
+                high = mid - 1
+    
+    return -1
+
+# ============================================
+# Sorting Helpers
+# ============================================
+
+# Find minimum value in range [start, end]
+fn find_min_in_range(start: i32, end: i32) -> i32:
+    let mut min: i32 = start
+    let mut i: i32 = start + 1
+    
+    while i <= end:
+        if i < min:
+            min = i
+        else:
+            min = min
+        i = i + 1
+    
+    return min
+
+# Find maximum value in range [start, end]
+fn find_max_in_range(start: i32, end: i32) -> i32:
+    let mut max: i32 = start
+    let mut i: i32 = start + 1
+    
+    while i <= end:
+        if i > max:
+            max = i
+        else:
+            max = max
+        i = i + 1
+    
+    return max
+
+# ============================================
+# Number Theory
+# ============================================
+
+# Greatest Common Divisor (Euclidean algorithm)
+fn gcd(a: i32, b: i32) -> i32:
+    let mut x: i32 = a
+    let mut y: i32 = b
+    
+    while y != 0:
+        let temp: i32 = y
+        y = x % y
+        x = temp
+    
+    return x
+
+# Least Common Multiple
+fn lcm(a: i32, b: i32) -> i32:
+    if a == 0:
+        return 0
+    else:
+        if b == 0:
+            return 0
+        else:
+            let divisor: i32 = gcd(a, b)
+            return a / divisor * b
+
+# Check if prime number
+fn is_prime(n: i32) -> bool:
+    if n <= 1:
+        return false
+    
+    if n <= 3:
+        return true
+    
+    if n % 2 == 0:
+        return false
+    
+    if n % 3 == 0:
+        return false
+    
+    let mut i: i32 = 5
+    while i * i <= n:
+        if n % i == 0:
+            return false
+        else:
+            if n % (i + 2) == 0:
+                return false
+            else:
+                i = i + 6
+    
+    return true
+
+# Count prime numbers up to n
+fn count_primes(n: i32) -> i32:
+    let mut count: i32 = 0
+    let mut i: i32 = 2
+    
+    while i <= n:
+        if is_prime(i):
+            count = count + 1
+        else:
+            count = count
+        i = i + 1
+    
+    return count
+
+# Find nth prime number
+fn nth_prime(n: i32) -> i32:
+    if n == 1:
+        return 2
+    
+    let mut count: i32 = 1
+    let mut candidate: i32 = 3
+    
+    while count < n:
+        if is_prime(candidate):
+            count = count + 1
+        else:
+            count = count
+        
+        if count < n:
+            candidate = candidate + 2
+        else:
+            candidate = candidate
+    
+    return candidate
+
+# ============================================
+# Combinatorics
+# ============================================
+
+# Factorial
+fn factorial(n: i32) -> i32:
+    if n <= 1:
+        return 1
+    
+    let mut result: i32 = 1
+    let mut i: i32 = 2
+    
+    while i <= n:
+        result = result * i
+        i = i + 1
+    
+    return result
+
+# Fibonacci number (iterative)
+fn fibonacci(n: i32) -> i32:
+    if n <= 1:
+        return n
+    
+    let mut prev: i32 = 0
+    let mut curr: i32 = 1
+    let mut i: i32 = 2
+    
+    while i <= n:
+        let next: i32 = prev + curr
+        prev = curr
+        curr = next
+        i = i + 1
+    
+    return curr
+
+# Triangular number (1 + 2 + 3 + ... + n)
+fn triangular(n: i32) -> i32:
+    return n * (n + 1) / 2
+
+# Sum of first n squares
+fn sum_of_squares(n: i32) -> i32:
+    return n * (n + 1) * (2 * n + 1) / 6
+
+# Sum of first n cubes
+fn sum_of_cubes(n: i32) -> i32:
+    let tri: i32 = triangular(n)
+    return tri * tri
+
+# ============================================
+# Digit Operations
+# ============================================
+
+# Count digits in a number
+fn count_digits(n: i32) -> i32:
+    if n == 0:
+        return 1
+    
+    let mut count: i32 = 0
+    let mut num: i32 = n
+    
+    if num < 0:
+        num = -num
+    else:
+        num = num
+    
+    while num > 0:
+        count = count + 1
+        num = num / 10
+    
+    return count
+
+# Sum of digits
+fn sum_digits(n: i32) -> i32:
+    let mut sum: i32 = 0
+    let mut num: i32 = n
+    
+    if num < 0:
+        num = -num
+    else:
+        num = num
+    
+    while num > 0:
+        sum = sum + num % 10
+        num = num / 10
+    
+    return sum
+
+# Reverse digits of a number
+fn reverse_number(n: i32) -> i32:
+    let mut reversed: i32 = 0
+    let mut num: i32 = n
+    
+    if num < 0:
+        num = -num
+    else:
+        num = num
+    
+    while num > 0:
+        reversed = reversed * 10 + num % 10
+        num = num / 10
+    
+    if n < 0:
+        return -reversed
+    else:
+        return reversed
+
+# Check if palindrome number
+fn is_palindrome(n: i32) -> bool:
+    if n < 0:
+        return false
+    
+    let reversed: i32 = reverse_number(n)
+    return n == reversed
+
+# ============================================
+# Power and Exponentiation
+# ============================================
+
+# Power (iterative)
+fn power_iter(base: i32, exp: i32) -> i32:
+    if exp == 0:
+        return 1
+    
+    let mut result: i32 = 1
+    let mut i: i32 = 0
+    
+    while i < exp:
+        result = result * base
+        i = i + 1
+    
+    return result
+
+# Fast exponentiation (exponentiation by squaring)
+fn power_fast(base: i32, exp: i32) -> i32:
+    if exp == 0:
+        return 1
+    
+    if exp == 1:
+        return base
+    
+    if exp % 2 == 0:
+        let half: i32 = power_fast(base, exp / 2)
+        return half * half
+    else:
+        let half_odd: i32 = power_fast(base, exp / 2)
+        return base * half_odd * half_odd
+
+# ============================================
+# Main Function
+# ============================================
+
+fn main() -> i32:
+    # Test searching
+    let found: i32 = binary_search(42, 100)
+    
+    # Test number theory
+    let divisor: i32 = gcd(48, 18)
+    let multiple: i32 = lcm(12, 15)
+    let prime_count: i32 = count_primes(100)
+    let tenth_prime: i32 = nth_prime(10)
+    
+    # Test combinatorics
+    let fact: i32 = factorial(6)
+    let fib: i32 = fibonacci(15)
+    let tri: i32 = triangular(10)
+    
+    # Test digit operations
+    let digits: i32 = count_digits(12345)
+    let digit_sum: i32 = sum_digits(12345)
+    let reversed: i32 = reverse_number(12345)
+    let is_pal: bool = is_palindrome(12321)
+    
+    # Test powers
+    let pow: i32 = power_fast(2, 10)
+    
+    return 0
