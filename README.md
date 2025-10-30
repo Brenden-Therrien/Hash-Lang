@@ -340,7 +340,7 @@ See [`examples/INDEX.md`](examples/INDEX.md) for the complete catalog of all 23 
 
 Join our Discord server to discuss Hash, get help, and share your projects:
 
-**[Join Hash Discord](https://discord.gg/kBA5zBcX)**
+**[Join Hash Discord](https://discord.gg/wFJ2fqC6xt)**
 
 ## Contributing
 
